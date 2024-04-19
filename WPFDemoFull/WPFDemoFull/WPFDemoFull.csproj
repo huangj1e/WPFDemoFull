@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WPFDemoFull.lang\WPFDemoFull.Lang.csproj" />
+    <ProjectReference Include="..\..\WPFDemoFull.Modules.ControlLayout\WPFDemoFull.Modules.ControlLayout.csproj" />
+    <ProjectReference Include="..\WPFDemoFull.Core\WPFDemoFull.Core.csproj" />
+    <ProjectReference Include="..\Modules\WPFDemoFull.Modules.ModuleName\WPFDemoFull.Modules.ModuleName.csproj" />
+    <ProjectReference Include="..\Services\WPFDemoFull.Services.Interfaces\WPFDemoFull.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Services\WPFDemoFull.Services\WPFDemoFull.Services.csproj" />
+  </ItemGroup>
+</Project>

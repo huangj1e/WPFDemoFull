@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B7332E90-74D9-4548-8371-CE1916051175}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull.Modules.ModuleName.Tests", "WPFDemoFull\Tests\WPFDemoFull.Modules.ModuleName.Tests\WPFDemoFull.Modules.ModuleName.Tests.csproj", "{F52CDD53-FE64-42BD-9F9C-F677EA68328C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{CAD786E7-5C01-4809-8832-942C2D21CCE2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull.Modules.ModuleName", "WPFDemoFull\Modules\WPFDemoFull.Modules.ModuleName\WPFDemoFull.Modules.ModuleName.csproj", "{F14F9479-F792-40E2-9702-892A2F51C190}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{566EBAB2-22D0-4189-BA07-72F74642BA5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull.Services", "WPFDemoFull\Services\WPFDemoFull.Services\WPFDemoFull.Services.csproj", "{55B3E877-1701-4F67-ABB4-516626F064A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull.Services.Interfaces", "WPFDemoFull\Services\WPFDemoFull.Services.Interfaces\WPFDemoFull.Services.Interfaces.csproj", "{A86E0239-3E67-464B-BEAB-14453DF22F18}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull", "WPFDemoFull\WPFDemoFull\WPFDemoFull.csproj", "{66E82FB6-23FB-455A-95DF-D540D00A6B8F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull.Core", "WPFDemoFull\WPFDemoFull.Core\WPFDemoFull.Core.csproj", "{5ED41421-48EB-4160-98C8-9DA3B70F3F72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Languager", "Languager", "{B125C71F-C2C2-4694-A941-6C6885DAC618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemoFull.Lang", "WPFDemoFull.lang\WPFDemoFull.Lang.csproj", "{2629117D-76E0-4220-8BE9-0E5B3B41970E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemoFull.Modules.ControlLayout", "WPFDemoFull.Modules.ControlLayout\WPFDemoFull.Modules.ControlLayout.csproj", "{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F52CDD53-FE64-42BD-9F9C-F677EA68328C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52CDD53-FE64-42BD-9F9C-F677EA68328C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52CDD53-FE64-42BD-9F9C-F677EA68328C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52CDD53-FE64-42BD-9F9C-F677EA68328C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F14F9479-F792-40E2-9702-892A2F51C190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14F9479-F792-40E2-9702-892A2F51C190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14F9479-F792-40E2-9702-892A2F51C190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14F9479-F792-40E2-9702-892A2F51C190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B3E877-1701-4F67-ABB4-516626F064A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B3E877-1701-4F67-ABB4-516626F064A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B3E877-1701-4F67-ABB4-516626F064A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B3E877-1701-4F67-ABB4-516626F064A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86E0239-3E67-464B-BEAB-14453DF22F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86E0239-3E67-464B-BEAB-14453DF22F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86E0239-3E67-464B-BEAB-14453DF22F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86E0239-3E67-464B-BEAB-14453DF22F18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66E82FB6-23FB-455A-95DF-D540D00A6B8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E82FB6-23FB-455A-95DF-D540D00A6B8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E82FB6-23FB-455A-95DF-D540D00A6B8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E82FB6-23FB-455A-95DF-D540D00A6B8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED41421-48EB-4160-98C8-9DA3B70F3F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED41421-48EB-4160-98C8-9DA3B70F3F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED41421-48EB-4160-98C8-9DA3B70F3F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED41421-48EB-4160-98C8-9DA3B70F3F72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2629117D-76E0-4220-8BE9-0E5B3B41970E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2629117D-76E0-4220-8BE9-0E5B3B41970E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2629117D-76E0-4220-8BE9-0E5B3B41970E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2629117D-76E0-4220-8BE9-0E5B3B41970E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F52CDD53-FE64-42BD-9F9C-F677EA68328C} = {B7332E90-74D9-4548-8371-CE1916051175}
+		{F14F9479-F792-40E2-9702-892A2F51C190} = {CAD786E7-5C01-4809-8832-942C2D21CCE2}
+		{55B3E877-1701-4F67-ABB4-516626F064A8} = {566EBAB2-22D0-4189-BA07-72F74642BA5B}
+		{A86E0239-3E67-464B-BEAB-14453DF22F18} = {566EBAB2-22D0-4189-BA07-72F74642BA5B}
+		{2629117D-76E0-4220-8BE9-0E5B3B41970E} = {B125C71F-C2C2-4694-A941-6C6885DAC618}
+		{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59} = {CAD786E7-5C01-4809-8832-942C2D21CCE2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C1E8C2A-B27E-445C-9BA9-8E6E5FD01562}
+	EndGlobalSection
+EndGlobal

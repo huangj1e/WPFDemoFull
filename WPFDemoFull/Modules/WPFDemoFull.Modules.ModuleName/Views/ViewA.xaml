@@ -2,13 +2,10 @@
     x:Class="WPFDemoFull.Modules.ModuleName.Views.ViewA"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:lang="clr-namespace:WPFDemoFull.Lang;assembly=WPFDemoFull.lang"
     xmlns:local="clr-namespace:WPFDemoFull.Modules.ModuleName.Views"
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="True">
-    <UserControl.Resources>
-        <lang:Language x:Key="language" />
-    </UserControl.Resources>
+
     <Grid>
         <StackPanel>
             <TextBlock
@@ -16,8 +13,7 @@
                 VerticalAlignment="Center"
                 FontSize="24"
                 Text="{Binding Message}" />
-            <TextBlock Text="{Binding Source={StaticResource language}, Path=Current.AppTitle}" />
-            <TextBlock Text="{Binding Source={StaticResource language}, Path=Current.Test1}" />
+            <TextBlock Text="{DynamicResource WinTitle}" />
         </StackPanel>
     </Grid>
 </UserControl>

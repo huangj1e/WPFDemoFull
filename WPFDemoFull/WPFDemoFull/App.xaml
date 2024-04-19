@@ -8,6 +8,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.zh-CN.xaml" />
                 <materialDesign:BundledTheme
                     BaseTheme="Light"
                     PrimaryColor="DeepPurple"

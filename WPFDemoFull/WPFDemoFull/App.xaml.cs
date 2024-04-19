@@ -1,7 +1,8 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
-using WPFDemoFull.Lang;
+using WPFDemoFull.LangResource.Interface;
+using WPFDemoFull.LangResource.Service;
 using WPFDemoFull.Modules.ControlLayout;
 using WPFDemoFull.Modules.ModuleName;
 using WPFDemoFull.Services;
@@ -23,6 +24,8 @@ namespace WPFDemoFull
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IMessageService, MessageService>();
+            containerRegistry.RegisterSingleton<ILanguageService, LanguageService>();
+            //containerRegistry.RegisterSingleton<ILanguage, en_US>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

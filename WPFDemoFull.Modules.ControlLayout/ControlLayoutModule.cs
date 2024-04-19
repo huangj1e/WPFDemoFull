@@ -2,6 +2,9 @@
 using Prism.Modularity;
 using Prism.Regions;
 using WPFDemoFull.Core;
+using WPFDemoFull.LangResource.Interface;
+using WPFDemoFull.LangResource.Service;
+using WPFDemoFull.Modules.ControlLayout.Layout.ViewModels;
 using WPFDemoFull.Modules.ControlLayout.Views;
 using WPFDemoFull.Modules.ControlLayout.Views.Layout;
 
@@ -18,12 +21,12 @@ public class ControlLayoutModule : IModule
 
     public void OnInitialized(IContainerProvider containerProvider)
     {
-        _regionManager.RequestNavigate(RegionNames.MenuRegion, nameof(GridDemoView));
+        _regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(GridDemoView));
     }
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
     {
-        containerRegistry.RegisterForNavigation<ViewA>();
-        containerRegistry.RegisterForNavigation<GridDemoView>();
+        containerRegistry.RegisterForNavigation<GridDemoView, GridDemoViewModel>();
+        containerRegistry.RegisterSingleton<ILanguageService, LanguageService>();
     }
 }

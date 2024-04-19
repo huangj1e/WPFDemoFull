@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace WPFDemoFull.Modules.ControlLayout.Views.Layout
+namespace WPFDemoFull.Modules.ControlLayout.Views.Layout;
+
+/// <summary>
+/// Interaction logic for GridDemoView
+/// </summary>
+public partial class GridDemoView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for GridDemoView
-    /// </summary>
-    public partial class GridDemoView : UserControl
+    public GridDemoView()
     {
-        public GridDemoView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

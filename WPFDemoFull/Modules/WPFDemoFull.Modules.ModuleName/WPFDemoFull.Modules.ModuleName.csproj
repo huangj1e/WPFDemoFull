@@ -7,7 +7,6 @@
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\WPFDemoFull.lang\WPFDemoFull.Lang.csproj" />
     <ProjectReference Include="..\..\WPFDemoFull.Core\WPFDemoFull.Core.csproj" />
     <ProjectReference Include="..\..\Services\WPFDemoFull.Services.Interfaces\WPFDemoFull.Services.Interfaces.csproj" />
   </ItemGroup>

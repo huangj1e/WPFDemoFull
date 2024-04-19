@@ -1,23 +1,31 @@
 ﻿using Prism.Mvvm;
+using System;
 using System.Linq;
-using WPFDemoFull.Lang;
+using System.Windows;
+using WPFDemoFull.LangResource.Interface;
 
 namespace WPFDemoFull.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-    private ILanguage _language;
 
     private string _title = "Prism Application";
+    private readonly ILanguageService _languageService;
+
     public string Title
     {
         get { return _title; }
         set { SetProperty(ref _title, value); }
     }
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(ILanguageService languageService)
     {
-        _language = Language.GetLanguages().LastOrDefault();
-        _title = _language.AppTitle;
+        _languageService = languageService;
+        _languageService.OnChangeLanguage += _languageService_OnChangeLanguage;
+    }
+
+    private void _languageService_OnChangeLanguage(string lang)
+    {
+
     }
 }

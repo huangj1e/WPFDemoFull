@@ -1,16 +1,18 @@
 ﻿using Prism.Regions;
 using System;
+using WPFDemoFull.LangResource.Interface;
+using WPFDemoFull.LangResource.Service;
 
 namespace WPFDemoFull.Core.Mvvm
 {
     public class RegionViewModelBase : ViewModelBase, INavigationAware, IConfirmNavigationRequest
     {
         protected IRegionManager RegionManager { get; private set; }
-
-        public RegionViewModelBase(IRegionManager regionManager)
+        public RegionViewModelBase(ILanguageService languageService, IRegionManager regionManager) : base(languageService)
         {
             RegionManager = regionManager;
         }
+
 
         public virtual void ConfirmNavigationRequest(NavigationContext navigationContext, Action<bool> continuationCallback)
         {

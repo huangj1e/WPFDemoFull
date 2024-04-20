@@ -42,6 +42,9 @@ public class GridInfo : BindableBase
     public int Row
     {
         get { return _row; }
-        set { SetProperty(ref _row, value); }
+        set {
+            if (value == 1) value = 0;
+            SetProperty(ref _row, value); 
+        }
     }
 }

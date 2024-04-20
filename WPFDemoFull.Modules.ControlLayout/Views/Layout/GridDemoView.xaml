@@ -13,72 +13,104 @@
     d:DesignWidth="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Viewbox>
-            <TextBlock Text="{Binding GridInfo.Name, StringFormat='GridName:{0}'}" />
-        </Viewbox>
-        <Grid Grid.Row="1">
+    <ScrollViewer>
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <materialDesign:Card
-                Grid.Row="{Binding GridInfo.Row}"
-                Grid.Column="{Binding GridInfo.Col}"
-                Margin="15">
-                <StackPanel>
-                    <TextBox
-                        Margin="5,25"
-                        materialDesign:HintAssist.HelperText="这是此元素绑定的名称"
-                        materialDesign:HintAssist.Hint="Grid.Name"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        Text="{Binding GridInfo.Name}" />
-                    <TextBox
-                        Margin="5,0,5,25"
-                        materialDesign:HintAssist.HelperText="这是此元素相对父元素Grid的列坐标，尝试修改为 0 或 1"
-                        materialDesign:HintAssist.Hint="Grid.Col"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        Text="{Binding GridInfo.Col}" />
-                    <TextBox
-                        Margin="5,0,5,25"
-                        materialDesign:HintAssist.HelperText="这是此元素相对父元素Grid的行坐标，尝试修改为 0 或 1"
-                        materialDesign:HintAssist.Hint="Grid.Row"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        Text="{Binding GridInfo.Row}" />
-                    <Button
-                        Margin="5,0,5,25"
-                        Command="{Binding ChangeLanguageCommand}"
-                        Content="提交" />
-                </StackPanel>
-            </materialDesign:Card>
-            <GridSplitter
-                Grid.RowSpan="2"
-                Width="10"
-                ResizeDirection="Columns">
-                <GridSplitter.Template>
-                    <ControlTemplate>
-                        <Border
-                            Margin="0,5"
-                            Background="#40000000"
-                            CornerRadius="5">
-                            <materialDesign:PackIcon
-                                Width="25"
-                                Height="25"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Kind="MoreVert" />
-                        </Border>
-                    </ControlTemplate>
-                </GridSplitter.Template>
-            </GridSplitter>
+            <Viewbox>
+                <TextBlock Text="{Binding GridInfo.Name, StringFormat='GridName:{0}'}" />
+            </Viewbox>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:Card
+                    Grid.Row="{Binding GridInfo.Row}"
+                    Grid.Column="{Binding GridInfo.Col}"
+                    Margin="15">
+                    <ScrollViewer>
+                        <StackPanel>
+                            <TextBox
+                                Margin="5,25"
+                                materialDesign:HintAssist.HelperText="这是此元素绑定的名称"
+                                materialDesign:HintAssist.Hint="Grid.Name"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                Text="{Binding GridInfo.Name}" />
+                            <TextBox
+                                Margin="5,0,5,25"
+                                materialDesign:HintAssist.HelperText="这是此元素相对父元素Grid的列坐标，尝试修改为 0 或 1"
+                                materialDesign:HintAssist.Hint="Grid.Col"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                Text="{Binding GridInfo.Col}" />
+                            <TextBox
+                                Margin="5,0,5,25"
+                                materialDesign:HintAssist.HelperText="这是此元素相对父元素Grid的行坐标，尝试修改为 0 或 2，不要改为1 ！因为1是水平的 GridSplitter"
+                                materialDesign:HintAssist.Hint="Grid.Row"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                Text="{Binding GridInfo.Row}" />
+                            <Button
+                                Margin="5,0,5,25"
+                                Content="提交" />
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </materialDesign:Card>
+                <!--  水平  -->
+                <GridSplitter
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Height="10"
+                    HorizontalAlignment="Stretch"
+                    Background="Blue"
+                    ResizeDirection="Rows">
+                    <GridSplitter.Template>
+                        <ControlTemplate>
+                            <Border
+                                Background="#40000000"
+                                CornerRadius="5">
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="•••" />
+                            </Border>
+                        </ControlTemplate>
+                    </GridSplitter.Template>
+                </GridSplitter>
+                <!--  垂直  -->
+                <GridSplitter
+                    Grid.RowSpan="3"
+                    Width="10"
+                    Margin="0"
+                    ResizeDirection="Columns">
+                    <GridSplitter.Template>
+                        <ControlTemplate>
+                            <Border
+                                Background="#40000000"
+                                CornerRadius="5">
+                                <materialDesign:PackIcon
+                                    Width="25"
+                                    Height="25"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Kind="MoreVert" />
+                            </Border>
+                        </ControlTemplate>
+                    </GridSplitter.Template>
+                </GridSplitter>
+                <!--  设置 GridSplitter 的高度  -->
+                <!--  在第二行和第三行之间添加一个 GridSplitter  -->
+
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollViewer>
 </UserControl>

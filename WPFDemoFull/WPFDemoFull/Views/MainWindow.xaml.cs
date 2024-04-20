@@ -51,11 +51,11 @@ public partial class MainWindow : Window
         {
             /*
                  想要在资源清单中加载字典文件，需要在App.Xaml中添加如下代码：
-                     <ResourceDictionary>
-                         <ResourceDictionary.MergedDictionaries>
-                             <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.xaml"/>
-                         </ResourceDictionary.MergedDictionaries>
-                     </ResourceDictionary>
+                     <LanguageDictionary>
+                         <LanguageDictionary.MergedDictionaries>
+                             <LanguageDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.xaml"/>
+                         </LanguageDictionary.MergedDictionaries>
+                     </LanguageDictionary>
                  */
             resourceDictionary = dictionaryList.FirstOrDefault(d => d.Source.OriginalString.Equals(requestedCulture));
         }

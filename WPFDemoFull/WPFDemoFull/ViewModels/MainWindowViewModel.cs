@@ -8,9 +8,7 @@ namespace WPFDemoFull.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-
     private string _title = "Prism Application";
-    private readonly ILanguageService _languageService;
 
     public string Title
     {
@@ -18,13 +16,7 @@ public class MainWindowViewModel : BindableBase
         set { SetProperty(ref _title, value); }
     }
 
-    public MainWindowViewModel(ILanguageService languageService)
-    {
-        _languageService = languageService;
-        _languageService.OnChangeLanguage += _languageService_OnChangeLanguage;
-    }
-
-    private void _languageService_OnChangeLanguage(string lang)
+    public MainWindowViewModel()
     {
 
     }

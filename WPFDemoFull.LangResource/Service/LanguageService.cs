@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,12 @@ public class LanguageService : ILanguageService
 
     public void ChangeLanguage(string lang) => OnChangeLanguage?.Invoke(lang);
 
+    public IEnumerable<CultureInfo> GetAllLanguage()
+    {
+        // 获取系统中所有可用的语言列表
+        return CultureInfo.GetCultures(CultureTypes.AllCultures)
+            .Where(cultureInfo => !cultureInfo.Equals(CultureInfo.InvariantCulture));
+    }
 
     public string GetValue(string key) => (string)ResourceDictionary[key];
 

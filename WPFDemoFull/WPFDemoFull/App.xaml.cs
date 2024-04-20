@@ -23,13 +23,14 @@ namespace WPFDemoFull
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            //注册服务
             containerRegistry.RegisterSingleton<IMessageService, MessageService>();
             containerRegistry.RegisterSingleton<ILanguageService, LanguageService>();
-            //containerRegistry.RegisterSingleton<ILanguage, en_US>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
+            //注册模块
             //moduleCatalog.AddModule<ModuleNameModule>();
             moduleCatalog.AddModule<ControlLayoutModule>();
         }

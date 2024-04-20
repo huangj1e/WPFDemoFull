@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ public delegate void ChangeLanguageDelegate(string lang);
 public interface ILanguageService
 {
     /// <summary>
-    /// 修改语言的事件
+    /// 修改语言的委托事件
     /// </summary>
     event ChangeLanguageDelegate OnChangeLanguage;
     /// <summary>
@@ -41,4 +42,10 @@ public interface ILanguageService
     /// <param name="key"></param>
     /// <returns></returns>
     string GetValue(string key);
+
+    /// <summary>
+    /// 获取所有语言
+    /// </summary>
+    /// <returns></returns>
+    IEnumerable<CultureInfo> GetAllLanguage();
 }

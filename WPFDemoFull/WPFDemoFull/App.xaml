@@ -9,6 +9,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.zh-Hans.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.en-US.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.zh-CN.xaml" />
                 <materialDesign:BundledTheme
                     BaseTheme="Light"

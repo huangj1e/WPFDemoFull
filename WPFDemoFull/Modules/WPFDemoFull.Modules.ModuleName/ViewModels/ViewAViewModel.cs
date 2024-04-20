@@ -16,12 +16,14 @@ namespace WPFDemoFull.Modules.ModuleName.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
-        public ViewAViewModel(ILanguageService languageService, IRegionManager regionManager, IMessageService messageService) :
-            base(languageService,regionManager)
+        public ViewAViewModel(
+            IRegionManager regionManager,
+            ILanguageService languageService,
+            IMessageService messageService) :
+            base(languageService, regionManager)
         {
             Message = messageService.GetMessage();
         }
-
 
 
         public override void OnNavigatedTo(NavigationContext navigationContext)

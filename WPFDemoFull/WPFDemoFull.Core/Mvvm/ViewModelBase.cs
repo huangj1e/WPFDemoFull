@@ -11,27 +11,6 @@ public abstract class ViewModelBase : BindableBase, IDestructible
 {
     public ILanguageService LanguageService;
 
-    private  List<ResourceDictionary> _languageList;
-
-    public List<ResourceDictionary> LanguageList
-    {
-        get { return LanguageService.DictionaryList; }
-        set { SetProperty(ref _languageList, value); }
-    }
-
-
-    private ResourceDictionary _activeLanguage;
-
-    public ResourceDictionary ActiveLanguage
-    {
-        get { return LanguageService.ResourceDictionary; }
-        set {
-            LanguageService.SwitchDictionary(value);
-            SetProperty(ref _activeLanguage, value);
-        }
-    }
-
-
     protected ViewModelBase(ILanguageService languageService)
     {
         LanguageService = languageService;

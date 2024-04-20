@@ -23,14 +23,25 @@ public partial class MainWindow : Window
         InitializeComponent();
         _languageService = languageService;
         _languageService.OnChangeLanguage += OnLangChange;
-        //_languageService.ChangeLanguage("zh-CN");
-        _languageService.ChangeLanguage("zh-Hans");
+
+        //获取当前系统使用的语言名称
+        string currentCulture = System.Globalization.CultureInfo.CurrentCulture.Name;
+
+        _languageService.ChangeLanguage(currentCulture);
     }
 
     /// <summary>
     /// 主程序中实际修改语言的方法
+    /// 这样的委托可以实现多个地方同时修改语言
     /// </summary>
-    /// <param name="culture"></param>
+    /// <param name="culture">
+    /// 输入值如下：
+    /// <list type="table">
+    /// <item>en_US</item>
+    /// <item>zh_Hans</item>
+    /// <item>zh_TW</item>
+    /// </list>
+    /// </param>
     private void OnLangChange(string culture)
     {
         List<ResourceDictionary> dictionaryList = new();
@@ -41,21 +52,26 @@ public partial class MainWindow : Window
 
         string requestedCulture = string.Format(@"pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.{0}.xaml", culture);
         ResourceDictionary resourceDictionary = null;
-        try
+
+        if (dictionaryList.Any(d => d.Source?.OriginalString == requestedCulture))
         {
+            /*
+                 想要在资源清单中加载字典文件，需要在App.Xaml中添加如下代码：
+                     <ResourceDictionary>
+                         <ResourceDictionary.MergedDictionaries>
+                             <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.xaml"/>
+                         </ResourceDictionary.MergedDictionaries>
+                     </ResourceDictionary>
+                 */
             resourceDictionary = dictionaryList.FirstOrDefault(d => d.Source.OriginalString.Equals(requestedCulture));
         }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
-        }
-
-        if (resourceDictionary == null)
+        else
         {
             //加载默认语言
             requestedCulture = @"pack://application:,,,/WPFDemoFull.LangResource;component/Resources/StringResource.xaml";
-            resourceDictionary = dictionaryList.FirstOrDefault(d => d.Source.OriginalString.Equals(requestedCulture));
+            resourceDictionary = dictionaryList.FirstOrDefault(d => d.Source?.OriginalString == requestedCulture);
         }
+
         if (resourceDictionary != null)
         {
             //通过删除再添加的方式，实现刷新

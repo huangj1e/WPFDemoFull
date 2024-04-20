@@ -32,6 +32,7 @@ public interface ILanguageService
     void SwitchDictionary(ResourceDictionary dic);
 
     List<ResourceDictionary> DictionaryList { get; set; }
+    /// <summary>
     /// 取字典中 key 对应的 value
     /// </summary>
     /// <param name="key"></param>

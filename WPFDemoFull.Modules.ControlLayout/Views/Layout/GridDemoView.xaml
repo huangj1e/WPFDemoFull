@@ -55,6 +55,7 @@
                         Text="{Binding GridInfo.Row}" />
                     <Button
                         Margin="5,0,5,25"
+                        Command="{Binding ChangeLanguageCommand}"
                         Content="提交" />
                 </StackPanel>
             </materialDesign:Card>

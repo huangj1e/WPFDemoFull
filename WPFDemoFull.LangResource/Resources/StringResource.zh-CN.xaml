@@ -12,4 +12,5 @@
     <sys:String x:Key="HdEmail">邮箱</sys:String>
     <sys:String x:Key="HdTel">电话</sys:String>
     <sys:String x:Key="MsgShowTime">现在时间是：{0}</sys:String>
+    <sys:String x:Key="GridDefName">Grid名称</sys:String>
 </ResourceDictionary>

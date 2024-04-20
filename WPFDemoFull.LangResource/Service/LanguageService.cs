@@ -25,7 +25,11 @@ public class LanguageService : ILanguageService
 
     public event ChangeLanguageDelegate? OnChangeLanguage;
 
-    public void ChangeLanguage(string lang) => OnChangeLanguage?.Invoke(lang);
+    public void ChangeLanguage(string lang)
+    {
+        OnChangeLanguage?.Invoke(lang);
+        ResourceDictionary = DictionaryList.FirstOrDefault(d => d.Source.OriginalString.Contains(lang));
+    }
 
     public IEnumerable<CultureInfo> GetAllLanguage()
     {

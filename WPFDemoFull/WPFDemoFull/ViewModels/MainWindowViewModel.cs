@@ -1,8 +1,4 @@
 ﻿using Prism.Mvvm;
-using System;
-using System.Linq;
-using System.Windows;
-using WPFDemoFull.LangResource.Interface;
 
 namespace WPFDemoFull.ViewModels;
 

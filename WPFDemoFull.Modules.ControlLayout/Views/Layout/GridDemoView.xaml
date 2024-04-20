@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="clr-namespace:WPFDemoFull.Core;assembly=WPFDemoFull.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WPFDemoFull.Modules.ControlLayout.Layout.ViewModels"
+    xmlns:local="clr-namespace:WPFDemoFull.Modules.ControlLayout.ViewModels.Layout"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     d:DataContext="{d:DesignInstance Type=local:GridDemoViewModel}"
@@ -15,28 +16,68 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
-            <RowDefinition />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel>
-            <ComboBox
-                IsEditable="True"
-                ItemsSource="{Binding CultureInfoList}"
-                SelectedItem="{Binding CultureInfoActive}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <TextBlock Text="{Binding NativeName}" />
-                            <TextBlock
-                                HorizontalAlignment="Right"
-                                Text="{Binding Name}" />
-                        </Grid>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <TextBlock Text="{DynamicResource WinTitle}" />
-        </StackPanel>
-        <StackPanel
-            Grid.Row="1"
-            Background="Red" />
+        <Viewbox>
+            <TextBlock Text="{Binding GridInfo.Name, StringFormat='GridName:{0}'}" />
+        </Viewbox>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <materialDesign:Card
+                Grid.Row="{Binding GridInfo.Row}"
+                Grid.Column="{Binding GridInfo.Col}"
+                Margin="15">
+                <StackPanel>
+                    <TextBox
+                        Margin="5,25"
+                        materialDesign:HintAssist.HelperText="这是此元素绑定的名称"
+                        materialDesign:HintAssist.Hint="Grid.Name"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        Text="{Binding GridInfo.Name}" />
+                    <TextBox
+                        Margin="5,0,5,25"
+                        materialDesign:HintAssist.HelperText="这是此元素相对父元素Grid的列坐标，尝试修改为 0 或 1"
+                        materialDesign:HintAssist.Hint="Grid.Col"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        Text="{Binding GridInfo.Col}" />
+                    <TextBox
+                        Margin="5,0,5,25"
+                        materialDesign:HintAssist.HelperText="这是此元素相对父元素Grid的行坐标，尝试修改为 0 或 1"
+                        materialDesign:HintAssist.Hint="Grid.Row"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        Text="{Binding GridInfo.Row}" />
+                    <Button
+                        Margin="5,0,5,25"
+                        Content="提交" />
+                </StackPanel>
+            </materialDesign:Card>
+            <GridSplitter
+                Grid.RowSpan="2"
+                Width="10"
+                ResizeDirection="Columns">
+                <GridSplitter.Template>
+                    <ControlTemplate>
+                        <Border
+                            Margin="0,5"
+                            Background="#40000000"
+                            CornerRadius="5">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Kind="MoreVert" />
+                        </Border>
+                    </ControlTemplate>
+                </GridSplitter.Template>
+            </GridSplitter>
+        </Grid>
     </Grid>
 </UserControl>

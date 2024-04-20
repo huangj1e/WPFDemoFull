@@ -1,7 +1,6 @@
 ﻿using Prism.Regions;
 using System;
 using WPFDemoFull.LangResource.Interface;
-using WPFDemoFull.LangResource.Service;
 
 namespace WPFDemoFull.Core.Mvvm
 {

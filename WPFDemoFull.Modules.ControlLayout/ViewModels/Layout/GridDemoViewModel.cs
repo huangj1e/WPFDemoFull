@@ -2,37 +2,50 @@
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Windows;
 using WPFDemoFull.Core.Mvvm;
 using WPFDemoFull.LangResource.Interface;
-using WPFDemoFull.LangResource.Service;
 
-namespace WPFDemoFull.Modules.ControlLayout.Layout.ViewModels;
+namespace WPFDemoFull.Modules.ControlLayout.ViewModels.Layout;
+
+
+
+public class GridInfo : BindableBase
+{
+    public void ChangeName(string name) => Name = name;
+
+    private string name;
+
+    public string Name
+    {
+        get { return name; }
+        set { SetProperty(ref name, value); }
+    }
+
+    private int _col;
+
+    public int Col
+    {
+        get { return _col; }
+        set { SetProperty(ref _col, value); }
+    }
+
+    private int _row;
+
+    public int Row
+    {
+        get { return _row; }
+        set { SetProperty(ref _row, value); }
+    }
+}
+
 
 public class GridDemoViewModel : ViewModelBase
 {
-    private List<CultureInfo> _cultureInfoList;
+    public GridInfo GridInfo { get; set; } = new GridInfo();
 
-    public List<CultureInfo> CultureInfoList
-    {
-        get { return _cultureInfoList; }
-        set {
-            SetProperty(ref _cultureInfoList, value);
-        }
-    }
-
-    private CultureInfo _cultureInfoActive;
-
-    public CultureInfo CultureInfoActive
-    {
-        get { return _cultureInfoActive; }
-        set { 
-            LanguageService.ChangeLanguage(value.TextInfo.CultureName);
-            SetProperty(ref _cultureInfoActive, value);
-        }
-    }
     private int _count;
 
     public int Count
@@ -44,7 +57,6 @@ public class GridDemoViewModel : ViewModelBase
     public GridDemoViewModel(ILanguageService languageService) : base(languageService)
     {
         Count = 123;
-        CultureInfoList = LanguageService.GetAllLanguage().ToList();
+        GridInfo.ChangeName("Name");
     }
-
 }

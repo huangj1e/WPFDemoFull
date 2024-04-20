@@ -1,13 +1,7 @@
-﻿using Prism.Events;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows;
-using WPFDemoFull.Core.EventArgs;
 using WPFDemoFull.LangResource.Interface;
-using WPFDemoFull.LangResource.Service;
 
 namespace WPFDemoFull.Views;
 

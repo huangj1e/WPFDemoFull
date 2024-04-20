@@ -1,8 +1,5 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Documents;
 using WPFDemoFull.LangResource.Interface;
 
 namespace WPFDemoFull.Core.Mvvm;

@@ -4,7 +4,6 @@ using System.Windows;
 using WPFDemoFull.LangResource.Interface;
 using WPFDemoFull.LangResource.Service;
 using WPFDemoFull.Modules.ControlLayout;
-using WPFDemoFull.Modules.ModuleName;
 using WPFDemoFull.Services;
 using WPFDemoFull.Services.Interfaces;
 using WPFDemoFull.Views;

@@ -3,11 +3,16 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="clr-namespace:WPFDemoFull.Core;assembly=WPFDemoFull.Core"
-    xmlns:prism="http://prismlibrary.com/"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFDemoFull.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/" 
     Title="{Binding Title}"
     Width="525"
     Height="350"
-    prism:ViewModelLocator.AutoWireViewModel="True">
+    d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
     <Grid>
         <!--  注册入口导航区域  -->
         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />

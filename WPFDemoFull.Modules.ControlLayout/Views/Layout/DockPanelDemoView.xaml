@@ -1,9 +1,404 @@
-﻿<UserControl x:Class="WPFDemoFull.Modules.ControlLayout.Views.Layout.DockPanelDemoView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"             
-             prism:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
-            
-    </Grid>
+﻿<UserControl
+    x:Class="WPFDemoFull.Modules.ControlLayout.Views.Layout.DockPanelDemoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFDemoFull.Modules.ControlLayout.ViewModels.Layout"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    d:Background="White"
+    d:DataContext="{d:DesignInstance Type=local:DockPanelDemoViewModel}"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <materialDesign:TransitioningContent>
+        <materialDesign:TransitioningContent.OpeningEffects>
+            <materialDesign:TransitionEffect Kind="SlideInFromRight" />
+            <materialDesign:TransitionEffect Kind="FadeIn" />
+        </materialDesign:TransitioningContent.OpeningEffects>
+        <Grid Margin="10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Margin="15,0"
+                VerticalAlignment="Center"
+                d:Text="测试标题"
+                FontSize="36"
+                FontWeight="Bold"
+                Text="{Binding ViewTitle}" />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="240" />
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <ItemsControl
+                                d:ItemsSource="{d:SampleData ItemCount=10}"
+                                ItemsSource="{Binding DockInfoDemoList}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <DockPanel LastChildFill="{Binding LastChildFill}" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <materialDesign:TransitioningContent
+                                            DockPanel.Dock="{Binding SelectedDock}"
+                                            OpeningEffect="{materialDesign:TransitionEffect Kind=ExpandIn}"
+                                            OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                            <materialDesign:Card
+                                                Width="{Binding Width}"
+                                                Height="{Binding Height}"
+                                                Margin="10"
+                                                materialDesign:ElevationAssist.Elevation="Dp6">
+                                                <StackPanel Margin="15">
+                                                    <TextBlock
+                                                        FontSize="26"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Index, StringFormat='No.{0}'}" />
+                                                    <ComboBox
+                                                        Margin="5"
+                                                        ItemsSource="{Binding DataContext.DockOptions, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        SelectedItem="{Binding SelectedDock}" />
+                                                    <UniformGrid Columns="2">
+                                                        <TextBox
+                                                            Margin="5"
+                                                            materialDesign:HintAssist.Hint="Height"
+                                                            PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                            Text="{Binding Height}" />
+                                                        <TextBox
+                                                            Margin="5"
+                                                            materialDesign:HintAssist.Hint="Width"
+                                                            PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                            Text="{Binding Width}" />
+                                                    </UniformGrid>
+                                                    <Button>
+                                                        <TextBlock
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Text="Submit"
+                                                            TextAlignment="Center"
+                                                            TextWrapping="Wrap" />
+                                                    </Button>
+                                                </StackPanel>
+                                            </materialDesign:Card>
+                                        </materialDesign:TransitioningContent>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    VerticalAlignment="Center"
+                                    Kind="Information" />
+                                <Label Content="因为本例中的ItemsControl中的内容并不属于DockPanel的直接下级，所以DockPanel.Dock的设置不会生效" />
+                            </StackPanel>
+                            <Rectangle Style="{StaticResource PageSectionSeparator}" />
+                            <DockPanel LastChildFill="{Binding LastChildFill}">
+                                <!--  此处定义了控件名称Card1但是并未使用名称，只是方便查看效果  -->
+                                <materialDesign:Card
+                                    x:Name="Card1"
+                                    Width="{Binding DockCardItem1.Width}"
+                                    Height="{Binding DockCardItem1.Height}"
+                                    Margin="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp6"
+                                    DockPanel.Dock="{Binding DockCardItem1.SelectedDock}">
+                                    <StackPanel Margin="15">
+                                        <TextBlock
+                                            FontSize="26"
+                                            FontWeight="Bold"
+                                            Text="{Binding DockCardItem1.Index, StringFormat='No.{0}'}" />
+                                        <ComboBox
+                                            Margin="5"
+                                            ItemsSource="{Binding DockOptions}"
+                                            SelectedItem="{Binding DockCardItem1.SelectedDock}" />
+                                        <UniformGrid Columns="2">
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Height"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem1.Height}" />
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Width"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem1.Width}" />
+                                        </UniformGrid>
+                                        <Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="Submit"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <!--  此处定义了控件名称Card2但是并未使用名称，只是方便查看效果  -->
+                                <materialDesign:Card
+                                    x:Name="Card2"
+                                    Width="{Binding DockCardItem2.Width}"
+                                    Height="{Binding DockCardItem2.Height}"
+                                    Margin="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp6"
+                                    DockPanel.Dock="{Binding DockCardItem2.SelectedDock}">
+                                    <StackPanel Margin="15">
+                                        <TextBlock
+                                            FontSize="26"
+                                            FontWeight="Bold"
+                                            Text="{Binding DockCardItem2.Index, StringFormat='No.{0}'}" />
+                                        <ComboBox
+                                            Margin="5"
+                                            ItemsSource="{Binding DockOptions}"
+                                            SelectedItem="{Binding DockCardItem2.SelectedDock}" />
+                                        <UniformGrid Columns="2">
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Height"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem2.Height}" />
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Width"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem2.Width}" />
+                                        </UniformGrid>
+                                        <Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="Submit"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <!--  此处定义了控件名称Card3但是并未使用名称，只是方便查看效果  -->
+                                <materialDesign:Card
+                                    x:Name="Card3"
+                                    Width="{Binding DockCardItem3.Width}"
+                                    Height="{Binding DockCardItem3.Height}"
+                                    Margin="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp6"
+                                    DockPanel.Dock="{Binding DockCardItem3.SelectedDock}">
+                                    <StackPanel Margin="15">
+                                        <TextBlock
+                                            FontSize="26"
+                                            FontWeight="Bold"
+                                            Text="{Binding DockCardItem3.Index, StringFormat='No.{0}'}" />
+                                        <ComboBox
+                                            Margin="5"
+                                            ItemsSource="{Binding DockOptions}"
+                                            SelectedItem="{Binding DockCardItem3.SelectedDock}" />
+                                        <UniformGrid Columns="2">
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Height"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem3.Height}" />
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Width"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem3.Width}" />
+                                        </UniformGrid>
+                                        <Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="Submit"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <!--  此处定义了控件名称DockCardItem4但是并未使用名称，只是方便查看效果  -->
+                                <materialDesign:Card
+                                    x:Name="DockCardItem4"
+                                    Width="{Binding DockCardItem4.Width}"
+                                    Height="{Binding DockCardItem4.Height}"
+                                    Margin="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp6"
+                                    DockPanel.Dock="{Binding DockCardItem4.SelectedDock}">
+                                    <StackPanel Margin="15">
+                                        <TextBlock
+                                            FontSize="26"
+                                            FontWeight="Bold"
+                                            Text="{Binding DockCardItem4.Index, StringFormat='No.{0}'}" />
+                                        <ComboBox
+                                            Margin="5"
+                                            ItemsSource="{Binding DockOptions}"
+                                            SelectedItem="{Binding DockCardItem4.SelectedDock}" />
+                                        <UniformGrid Columns="2">
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Height"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem4.Height}" />
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Width"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem4.Width}" />
+                                        </UniformGrid>
+                                        <Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="Submit"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <!--  此处定义了控件名称 DockCardItem5 但是并未使用名称，只是方便查看效果  -->
+                                <materialDesign:Card
+                                    x:Name="DockCardItem5"
+                                    Width="{Binding DockCardItem5.Width}"
+                                    Height="{Binding DockCardItem5.Height}"
+                                    Margin="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp6"
+                                    DockPanel.Dock="{Binding DockCardItem5.SelectedDock}">
+                                    <StackPanel Margin="15">
+                                        <TextBlock
+                                            FontSize="26"
+                                            FontWeight="Bold"
+                                            Text="{Binding DockCardItem5.Index, StringFormat='No.{0}'}" />
+                                        <ComboBox
+                                            Margin="5"
+                                            ItemsSource="{Binding DockOptions}"
+                                            SelectedItem="{Binding DockCardItem5.SelectedDock}" />
+                                        <UniformGrid Columns="2">
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Height"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem5.Height}" />
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Width"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem5.Width}" />
+                                        </UniformGrid>
+                                        <Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="Submit"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                                <!--  此处定义了控件名称 DockCardItem5 但是并未使用名称，只是方便查看效果  -->
+                                <materialDesign:Card
+                                    x:Name="DockCardItem6"
+                                    Width="{Binding DockCardItem6.Width}"
+                                    Height="{Binding DockCardItem6.Height}"
+                                    Margin="10"
+                                    materialDesign:ElevationAssist.Elevation="Dp6"
+                                    DockPanel.Dock="{Binding DockCardItem6.SelectedDock}">
+                                    <StackPanel Margin="15">
+                                        <TextBlock
+                                            FontSize="26"
+                                            FontWeight="Bold"
+                                            Text="{Binding DockCardItem6.Index, StringFormat='No.{0}'}" />
+                                        <ComboBox
+                                            Margin="5"
+                                            ItemsSource="{Binding DockOptions}"
+                                            SelectedItem="{Binding DockCardItem6.SelectedDock}" />
+                                        <UniformGrid Columns="2">
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Height"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem6.Height}" />
+                                            <TextBox
+                                                Margin="5"
+                                                materialDesign:HintAssist.Hint="Width"
+                                                PreviewMouseWheel="TextBox_PreviewMouseWheel"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                                Text="{Binding DockCardItem6.Width}" />
+                                        </UniformGrid>
+                                        <Button>
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="Submit"
+                                                TextAlignment="Center"
+                                                TextWrapping="Wrap" />
+                                        </Button>
+                                    </StackPanel>
+                                </materialDesign:Card>
+                            </DockPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    VerticalAlignment="Center"
+                                    Kind="Information" />
+                                <Label Content="因为本例中的ItemsControl中的内容并不属于DockPanel的直接下级，所以DockPanel.Dock的设置不会生效" />
+                            </StackPanel>
+                            <Rectangle Style="{StaticResource PageSectionSeparator}" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+                <!--  右侧固定 控制面板  -->
+                <StackPanel
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+                    <Separator Margin="5,0" />
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="LastChildFill" />
+                            <ToggleButton
+                                Margin="5,0"
+                                IsChecked="{Binding LastChildFill}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                VerticalAlignment="Center"
+                                Kind="Information" />
+                            <Label Content="最后一个元素是否撑满剩余的空间" />
+                        </StackPanel>
+                        <Button
+                            Margin="0,10"
+                            Command="{Binding ResetControlsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="25"
+                                    Height="25"
+                                    HorizontalAlignment="Left"
+                                    Kind="Refresh" />
+                                <TextBlock
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Text="Reset" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </materialDesign:TransitioningContent>
 </UserControl>
+

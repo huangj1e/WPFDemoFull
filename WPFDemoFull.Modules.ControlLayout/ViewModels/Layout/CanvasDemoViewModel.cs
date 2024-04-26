@@ -3,12 +3,14 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WPFDemoFull.Core.Mvvm;
+using WPFDemoFull.LangResource.Interface;
 
 namespace WPFDemoFull.Modules.ControlLayout.ViewModels.Layout;
 
-public class CanvasDemoViewModel : BindableBase
+public class CanvasDemoViewModel : ViewModelBase
 {
-    public CanvasDemoViewModel()
+    public CanvasDemoViewModel(ILanguageService languageService) : base(languageService)
     {
 
     }

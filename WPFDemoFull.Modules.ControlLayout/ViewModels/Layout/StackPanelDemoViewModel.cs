@@ -3,12 +3,14 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WPFDemoFull.Core.Mvvm;
+using WPFDemoFull.LangResource.Interface;
 
 namespace WPFDemoFull.Modules.ControlLayout.ViewModels.Layout;
 
-public class StackPanelDemoViewModel : BindableBase
+public class StackPanelDemoViewModel : ViewModelBase
 {
-    public StackPanelDemoViewModel()
+    public StackPanelDemoViewModel(ILanguageService languageService) : base(languageService)
     {
 
     }

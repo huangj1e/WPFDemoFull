@@ -4,7 +4,7 @@ namespace WPFDemoFull.ViewModels;
 
 public class MainWindowViewModel : BindableBase
 {
-    private string _title = "Prism Application";
+    private string _title = "WPFDemoFull Application";
 
     public string Title
     {

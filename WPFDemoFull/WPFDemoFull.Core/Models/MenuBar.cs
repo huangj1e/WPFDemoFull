@@ -35,4 +35,13 @@ public class MenuBar:BindableBase
 		get { return _navViewName; }
 		set { SetProperty(ref _navViewName, value); }
 	}
+
+	private string _title;
+
+	public string Title
+	{
+		get { return _title; }
+		set { SetProperty(ref _title, value); }
+	}
+
 }

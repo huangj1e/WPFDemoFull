@@ -1,5 +1,4 @@
-﻿using Prism.Mvvm;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using WPFDemoFull.Core.Mvvm;

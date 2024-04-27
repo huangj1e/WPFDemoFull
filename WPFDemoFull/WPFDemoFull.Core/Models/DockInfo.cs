@@ -1,18 +1,41 @@
 ﻿using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WPFDemoFull.Core.Models;
 
 public class DockInfo : BindableBase
 {
+    private HorizontalAlignment _horizontalAlignment;
+    public HorizontalAlignment HorizontalAlignment
+    {
+        get { return _horizontalAlignment; }
+        set { SetProperty(ref _horizontalAlignment, value); }
+    }
 
+    private HorizontalAlignment _horizontalContentAlignment;
 
+    public HorizontalAlignment HorizontalContentAlignment
+    {
+        get { return _horizontalContentAlignment; }
+        set { SetProperty(ref _horizontalContentAlignment, value); }
+    }
 
+    private VerticalAlignment _verticalAlignment;
+
+    public VerticalAlignment VerticalAlignment
+    {
+        get { return _verticalAlignment; }
+        set { SetProperty(ref _verticalAlignment, value); }
+    }
+
+    private VerticalAlignment _verticalContentAlignment;
+
+    public VerticalAlignment VerticalContentAlignment
+    {
+        get { return _verticalContentAlignment; }
+        set { SetProperty(ref _verticalContentAlignment, value); }
+    }
 
     private int _index;
 
@@ -40,16 +63,16 @@ public class DockInfo : BindableBase
 
     private double _height;
 
-    public DockInfo(int index, double width = 200, double height = 200)
-    {
-        Index = index;
-        Width = width;
-        Height = height;
-    }
-
     public double Height
     {
         get { return _height; }
         set { SetProperty(ref _height, value); }
+    }
+
+    public DockInfo(int index = 0, double width = 200, double height = 450)
+    {
+        Index = index;
+        Width = width;
+        Height = height;
     }
 }

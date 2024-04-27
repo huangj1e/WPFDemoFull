@@ -1,11 +1,5 @@
 ﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using WPFDemoFull.Core.Models;
 using WPFDemoFull.Core.Mvvm;
 using WPFDemoFull.LangResource.Interface;
@@ -15,6 +9,7 @@ namespace WPFDemoFull.Modules.ControlLayout.ViewModels.Layout;
 
 public class DockPanelDemoViewModel : ViewModelBase
 {
+    #region 属性
 
     private bool _lastChildFill;
 
@@ -25,10 +20,6 @@ public class DockPanelDemoViewModel : ViewModelBase
     }
 
 
-    private DelegateCommand _resetControlsCommand;
-    public DelegateCommand ResetControlsCommand => _resetControlsCommand ??= new DelegateCommand(CreatDockInfoDemoList);
-
-
     private ObservableCollection<DockInfo> _dockInfoDemoList;
 
     public ObservableCollection<DockInfo> DockInfoDemoList
@@ -37,78 +28,69 @@ public class DockPanelDemoViewModel : ViewModelBase
         set { SetProperty(ref _dockInfoDemoList, value); }
     }
 
-    public static IEnumerable<Dock> DockOptions { get => Enum.GetValues(typeof(Dock)) as IEnumerable<Dock>; }
-
+    #endregion
 
     public DockPanelDemoViewModel(ILanguageService languageService) : base(languageService)
     {
         CreatDockInfoDemoList();
     }
 
+    #region Dock 窗口的 6个子控件
 
-    private DockInfo _dockCardItem1;
+    private ObservableCollection<DockInfo> _dockInfoDemo2List;
 
-    public DockInfo DockCardItem1
+    public ObservableCollection<DockInfo> DockInfoDemo2List
     {
-        get { return _dockCardItem1; }
-        set { SetProperty(ref _dockCardItem1, value); }
+        get { return _dockInfoDemo2List; }
+        set { SetProperty(ref _dockInfoDemo2List, value); }
     }
 
-    private DockInfo _dockCardItem2;
+    #endregion
 
-    public DockInfo DockCardItem2
-    {
-        get { return _dockCardItem2; }
-        set { SetProperty(ref _dockCardItem2, value); }
-    }
-
-    private DockInfo _dockCardItem3;
-
-    public DockInfo DockCardItem3
-    {
-        get { return _dockCardItem3; }
-        set { SetProperty(ref _dockCardItem3, value); }
-    }
-
-    private DockInfo _dockCardItem4;
-
-    public DockInfo DockCardItem4
-    {
-        get { return _dockCardItem4; }
-        set { SetProperty(ref _dockCardItem4, value); }
-    }
-
-    private DockInfo _dockCardItem5;
-
-    public DockInfo DockCardItem5
-    {
-        get { return _dockCardItem5; }
-        set { SetProperty(ref _dockCardItem5, value); }
-    }
-
-    private DockInfo _dockCardItem6;
-    public DockInfo DockCardItem6
-    {
-        get { return _dockCardItem6; }
-        set { SetProperty(ref _dockCardItem6, value); }
-    }
-
-
-
-
+    /// <summary>
+    /// 初始化 所有的子控件
+    /// </summary>
     private void CreatDockInfoDemoList()
     {
         DockInfoDemoList = new();
-        for (int i = 1; i < 5; i++)
+        DockInfoDemo2List = new();
+        for (int i = 1; i < 7; i++)
         {
             DockInfoDemoList.Add(new(i, 120, 200));
+            DockInfoDemo2List.Add(new(i));
         }
-
-        DockCardItem1 = new(1, 120, 200);
-        DockCardItem2 = new(2, 120, 200);
-        DockCardItem3 = new(3, 120, 200);
-        DockCardItem4 = new(4, 120, 200);
-        DockCardItem5 = new(5, 120, 200);
-        DockCardItem6 = new(6, 120, 200);
     }
+
+    #region 绑定的命令
+
+    private DelegateCommand _resetControlsCommand;
+    /// <summary>
+    /// 重置控件
+    /// </summary>
+    public DelegateCommand ResetControlsCommand => _resetControlsCommand ??= new DelegateCommand(CreatDockInfoDemoList);
+
+
+
+    private DelegateCommand<string> _changeDockInfoDemo;
+    /// <summary>
+    /// 添加和删除 DockInfoDemoList 的子集
+    /// </summary>
+    public DelegateCommand<string> ChangeDockInfoDemo => _changeDockInfoDemo ??= new DelegateCommand<string>(ExecuteChangeDockInfoDemo);
+
+    void ExecuteChangeDockInfoDemo(string parameter)
+    {
+        switch (parameter)
+        {
+            case "add":
+                DockInfoDemoList.Add(new(DockInfoDemoList.Count + 1, 120, 200));
+                break;
+            case "remove":
+                if (DockInfoDemoList.Count > 0)
+                    DockInfoDemoList.RemoveAt(DockInfoDemoList.Count - 1);
+                break;
+            default:
+                break;
+        }
+    }
+    #endregion
 }

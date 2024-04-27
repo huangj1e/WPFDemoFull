@@ -21,9 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull", "WPFDemoFull\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull.Core", "WPFDemoFull\WPFDemoFull.Core\WPFDemoFull.Core.csproj", "{5ED41421-48EB-4160-98C8-9DA3B70F3F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemoFull.Modules.ControlLayout", "WPFDemoFull.Modules.ControlLayout\WPFDemoFull.Modules.ControlLayout.csproj", "{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull.Modules.ControlLayout", "WPFDemoFull.Modules.ControlLayout\WPFDemoFull.Modules.ControlLayout.csproj", "{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemoFull.LangResource", "WPFDemoFull.LangResource\WPFDemoFull.LangResource.csproj", "{EBF25A7E-54BB-4FB4-AA1F-F9DE2C32BD9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoFull.LangResource", "WPFDemoFull.LangResource\WPFDemoFull.LangResource.csproj", "{EBF25A7E-54BB-4FB4-AA1F-F9DE2C32BD9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CustomControls", "CustomControls", "{6DCA100B-241D-4C4C-BD87-551AE24FD070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemoFull.ItemPanelTemplate", "WPFDemoFull.ItemPanelTemplate\WPFDemoFull.ItemPanelTemplate.csproj", "{D0F0B71E-C817-4598-A606-5A8D0480E4A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{EBF25A7E-54BB-4FB4-AA1F-F9DE2C32BD9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBF25A7E-54BB-4FB4-AA1F-F9DE2C32BD9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBF25A7E-54BB-4FB4-AA1F-F9DE2C32BD9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0F0B71E-C817-4598-A606-5A8D0480E4A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0F0B71E-C817-4598-A606-5A8D0480E4A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0F0B71E-C817-4598-A606-5A8D0480E4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0F0B71E-C817-4598-A606-5A8D0480E4A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +82,7 @@ Global
 		{A86E0239-3E67-464B-BEAB-14453DF22F18} = {566EBAB2-22D0-4189-BA07-72F74642BA5B}
 		{8CB02F4A-0859-4C5D-AC1B-EBF9F8F94F59} = {CAD786E7-5C01-4809-8832-942C2D21CCE2}
 		{EBF25A7E-54BB-4FB4-AA1F-F9DE2C32BD9F} = {566EBAB2-22D0-4189-BA07-72F74642BA5B}
+		{D0F0B71E-C817-4598-A606-5A8D0480E4A3} = {6DCA100B-241D-4C4C-BD87-551AE24FD070}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C1E8C2A-B27E-445C-9BA9-8E6E5FD01562}

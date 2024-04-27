@@ -1,10 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Controls;
 using WPFDemoFull.Core.Models;
 using WPFDemoFull.Modules.ControlLayout.Views.Layout;
 

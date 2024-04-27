@@ -13,4 +13,12 @@ public class GridDemoViewModel : ViewModelBase
     {
         GridInfo.ChangeName(LanguageService.GetValue("GridDefName"));
     }
+
+    private DelegateCommand<string> _moveToDefinitionCommand;
+    public DelegateCommand<string> MoveToDefinitionCommand => _moveToDefinitionCommand ??= new DelegateCommand<string>(ExecuteMoveToDefinitionCommand);
+
+    void ExecuteMoveToDefinitionCommand(string parameter)
+    {
+
+    }
 }

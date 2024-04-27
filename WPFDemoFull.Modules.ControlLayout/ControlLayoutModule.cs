@@ -2,8 +2,8 @@
 using Prism.Modularity;
 using Prism.Regions;
 using WPFDemoFull.Core;
-using WPFDemoFull.Modules.ControlLayout.ViewModels.Layout;
 using WPFDemoFull.Modules.ControlLayout.ViewModels;
+using WPFDemoFull.Modules.ControlLayout.ViewModels.Layout;
 using WPFDemoFull.Modules.ControlLayout.Views;
 using WPFDemoFull.Modules.ControlLayout.Views.Layout;
 

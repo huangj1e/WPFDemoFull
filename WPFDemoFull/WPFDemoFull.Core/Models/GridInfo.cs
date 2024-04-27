@@ -1,9 +1,4 @@
 ﻿using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WPFDemoFull.Core.Models;
 
@@ -42,9 +37,10 @@ public class GridInfo : BindableBase
     public int Row
     {
         get { return _row; }
-        set {
+        set
+        {
             if (value == 1) value = 0;
-            SetProperty(ref _row, value); 
+            SetProperty(ref _row, value);
         }
     }
 }

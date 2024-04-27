@@ -25,7 +25,7 @@
                     VerticalAlignment="Center"
                     FontSize="36"
                     FontWeight="Bold"
-                    Text="{Binding GridInfo.Name, StringFormat='GridName:{0}'}" />
+                    Text="{Binding ViewTitle}" />
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -40,32 +40,46 @@
                         Grid.Row="{Binding GridInfo.Row}"
                         Grid.Column="{Binding GridInfo.Col}"
                         Margin="15">
-                        <ScrollViewer>
-                            <StackPanel>
-                                <TextBox
-                                    Margin="5,25"
-                                    materialDesign:HintAssist.HelperText="这是此元素绑定的名称"
-                                    materialDesign:HintAssist.Hint="Grid.Name"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                    Text="{Binding GridInfo.Name}" />
-                                <TextBox
-                                    Margin="5,0,5,25"
-                                    materialDesign:HintAssist.HelperText="这是此元素相对父元素Grid的列坐标，尝试修改为 0 或 1"
-                                    materialDesign:HintAssist.Hint="Grid.Col"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                    Text="{Binding GridInfo.Col}" />
-                                <TextBox
-                                    Margin="5,0,5,25"
-                                    materialDesign:HintAssist.HelperText="这是此元素相对父元素Grid的行坐标，尝试修改为 0 或 2，不要改为1 ！因为1是水平的 GridSplitter"
-                                    materialDesign:HintAssist.Hint="Grid.Row"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                    Text="{Binding GridInfo.Row}" />
-                                <Button
-                                    Margin="5,0,5,25"
-                                    Content="提交" />
-                            </StackPanel>
-                        </ScrollViewer>
-
+                        <UniformGrid
+                            Columns="2"
+                            Rows="2">
+                            <Button
+                                Height="auto"
+                                Margin="5"
+                                Command="{Binding MoveToDefinitionCommand}"
+                                CommandParameter="1">
+                                <TextBlock
+                                    FontSize="72"
+                                    Text="1" />
+                            </Button>
+                            <Button
+                                Height="auto"
+                                Margin="5"
+                                Command="{Binding MoveToDefinitionCommand}"
+                                CommandParameter="2">
+                                <TextBlock
+                                    FontSize="72"
+                                    Text="2" />
+                            </Button>
+                            <Button
+                                Height="auto"
+                                Margin="5"
+                                Command="{Binding MoveToDefinitionCommand}"
+                                CommandParameter="3">
+                                <TextBlock
+                                    FontSize="72"
+                                    Text="3" />
+                            </Button>
+                            <Button
+                                Height="auto"
+                                Margin="5"
+                                Command="{Binding MoveToDefinitionCommand}"
+                                CommandParameter="4">
+                                <TextBlock
+                                    FontSize="72"
+                                    Text="4" />
+                            </Button>
+                        </UniformGrid>
                     </materialDesign:Card>
                     <!--  水平  -->
                     <GridSplitter

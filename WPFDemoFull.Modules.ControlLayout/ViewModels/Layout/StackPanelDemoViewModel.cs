@@ -8,14 +8,15 @@ public class StackPanelDemoViewModel : ViewModelBase
 {
     public StackPanelDemoViewModel(ILanguageService languageService) : base(languageService)
     {
-        DockInfo = new(1);
+		Index = 8;
     }
 
-    private DockInfo _dockInfo;
+	private int _index;
 
-    public DockInfo DockInfo
-    {
-        get { return _dockInfo; }
-        set { SetProperty(ref _dockInfo, value); }
-    }
+	public int Index
+	{
+		get { return _index; }
+		set { SetProperty(ref _index, value); }
+	}
+
 }

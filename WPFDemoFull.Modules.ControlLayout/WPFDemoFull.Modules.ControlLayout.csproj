@@ -7,8 +7,8 @@
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WPFDemoFull.ItemPanelTemplate\WPFDemoFull.ItemPanelTemplate.csproj" />
     <ProjectReference Include="..\WPFDemoFull.LangResource\WPFDemoFull.LangResource.csproj" />
+    <ProjectReference Include="..\WPFDemoFull.PanelChildTemplate\WPFDemoFull.PanelChildTemplate.csproj" />
     <ProjectReference Include="..\WPFDemoFull\WPFDemoFull.Core\WPFDemoFull.Core.csproj" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
     x:Class="WPFDemoFull.Modules.ControlLayout.Views.Layout.StackPanelDemoView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ItemPanel="clr-namespace:WPFDemoFull.ItemPanelTemplate;assembly=WPFDemoFull.ItemPanelTemplate"
+    xmlns:PanelChild="clr-namespace:WPFDemoFull.PanelChildTemplate;assembly=WPFDemoFull.PanelChildTemplate"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPFDemoFull.Modules.ControlLayout.ViewModels.Layout"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -31,7 +31,11 @@
                 Grid.Row="1"
                 d:Background="#2fff0000">
                 <ScrollViewer>
-                    <ItemPanel:PanelChild DockInfos="{Binding DockInfo}" />
+                    <!--<ItemPanel:PanelChild DockInfos="{Binding DockInfo}" />-->
+                    <DockPanel>
+                        <PanelChild:DockChildControl Title="1" />
+                        <PanelChild:DockChildControl Title="2" />
+                    </DockPanel>
                 </ScrollViewer>
             </Grid>
         </Grid>

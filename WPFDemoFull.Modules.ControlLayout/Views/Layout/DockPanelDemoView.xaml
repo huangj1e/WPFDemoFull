@@ -2,7 +2,7 @@
     x:Class="WPFDemoFull.Modules.ControlLayout.Views.Layout.DockPanelDemoView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ItemPanel="clr-namespace:WPFDemoFull.ItemPanelTemplate;assembly=WPFDemoFull.ItemPanelTemplate"
+    xmlns:PanelChild="clr-namespace:WPFDemoFull.PanelChildTemplate;assembly=WPFDemoFull.PanelChildTemplate"
     xmlns:core="clr-namespace:WPFDemoFull.Core.Models;assembly=WPFDemoFull.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPFDemoFull.Modules.ControlLayout.ViewModels.Layout"
@@ -131,14 +131,12 @@
                             <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
                             <DockPanel LastChildFill="{Binding LastChildFill}">
-                                <!--  此处定义了控件名称Card1但是并未使用名称，只是方便查看效果  -->
-                                <ItemPanel:PanelChild DockInfos="{Binding DockInfoDemo2List[0], Mode=TwoWay}" />
-                                <!--  此处定义了控件名称Card2但是并未使用名称，只是方便查看效果  -->
-                                <ItemPanel:PanelChild DockInfos="{Binding DockInfoDemo2List[1], Mode=TwoWay}" />
-                                <ItemPanel:PanelChild DockInfos="{Binding DockInfoDemo2List[2], Mode=TwoWay}" />
-                                <ItemPanel:PanelChild DockInfos="{Binding DockInfoDemo2List[3]}" />
-                                <ItemPanel:PanelChild DockInfos="{Binding DockInfoDemo2List[4]}" />
-                                <ItemPanel:PanelChild DockInfos="{Binding DockInfoDemo2List[5]}" />
+                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[0]}" />
+                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[1]}" />
+                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[2]}" />
+                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[3]}" />
+                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[4]}" />
+                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[5]}" />
                             </DockPanel>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon

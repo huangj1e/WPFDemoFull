@@ -9,6 +9,13 @@ using System.Windows.Data;
 
 namespace WPFDemoFull.Core.Converters;
 
+/// <summary>
+///  Bool 转化为 Visibility
+///  <list type="bullet">
+/// <item>false => Visibility.Collapsed || Visibility.Hiden</item> 
+/// <item>true => Visibility.Visible </item>
+/// </list>
+/// </summary>
 public class BoolToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -21,6 +28,6 @@ public class BoolToVisibilityConverter : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        throw new NotImplementedException();
+        return value is Visibility visibility && visibility == Visibility.Visible;
     }
 }

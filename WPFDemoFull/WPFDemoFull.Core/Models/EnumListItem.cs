@@ -12,4 +12,9 @@ public class EnumListItem
     public static IEnumerable<HorizontalAlignment> HorizontalAlignmentOptions { get => Enum.GetValues(typeof(HorizontalAlignment)) as IEnumerable<HorizontalAlignment>; }
 
     public static IEnumerable<VerticalAlignment> VerticalAlignmentOptions { get => Enum.GetValues(typeof(VerticalAlignment)) as IEnumerable<VerticalAlignment>; }
+
+
+    public static IEnumerable<Orientation> OrientationOptions { get => Enum.GetValues(typeof(Orientation)) as IEnumerable<Orientation>; }
+
+    public static IEnumerable<TextAlignment> TextAlignmentOptions { get => Enum.GetValues(typeof(TextAlignment)) as IEnumerable<TextAlignment>; }
 }

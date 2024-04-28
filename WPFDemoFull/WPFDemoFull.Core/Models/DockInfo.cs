@@ -69,9 +69,38 @@ public class DockInfo : BindableBase
         set { SetProperty(ref _height, value); }
     }
 
-    public DockInfo(int index = 0, double width = 200, double height = 450)
+    private bool _isshowDockOptions;
+
+    public bool IsShowDockOptions
+    {
+        get { return _isshowDockOptions; }
+        set { SetProperty(ref _isshowDockOptions, value); }
+    }
+
+    /// <summary>
+    /// 显示Dock选项
+    /// </summary>
+    public void ShowDockOptions() => IsShowDockOptions = true;
+    /// <summary>
+    /// 隐藏Dock选项
+    /// </summary>
+    public void HideDockOptions() => IsShowDockOptions = false;
+
+    /// <summary>
+    /// 一个示例用的用户控件Model
+    /// </summary>
+    /// <param name="index">控件Id，用于分辨外观相同的不同控件</param>
+    /// <param name="isshowDockOptions">是否显示DockOptions ComboBox</param>
+    /// <param name="width">控件的初始宽</param>
+    /// <param name="height">控件的初始高</param>
+    public DockInfo(
+        int index = 0,
+        bool isshowDockOptions = false,
+        double width = 200,
+        double height = 450)
     {
         Index = index;
+        IsShowDockOptions = isshowDockOptions;
         Width = width;
         Height = height;
     }

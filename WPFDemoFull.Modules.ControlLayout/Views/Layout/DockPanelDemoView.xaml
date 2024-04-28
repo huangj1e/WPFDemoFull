@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:PanelChild="clr-namespace:WPFDemoFull.PanelChildTemplate;assembly=WPFDemoFull.PanelChildTemplate"
+    xmlns:conver="clr-namespace:WPFDemoFull.Core.Converters;assembly=WPFDemoFull.Core"
     xmlns:core="clr-namespace:WPFDemoFull.Core.Models;assembly=WPFDemoFull.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPFDemoFull.Modules.ControlLayout.ViewModels.Layout"
@@ -15,23 +16,37 @@
     d:DesignWidth="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  面板要引用的样式  -->
+                <ResourceDictionary Source="pack://application:,,,/WPFDemoFull.PanelChildTemplate;component/Style/MaterialDesignStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <materialDesign:TransitioningContent>
         <materialDesign:TransitioningContent.OpeningEffects>
             <materialDesign:TransitionEffect Kind="SlideInFromRight" />
             <materialDesign:TransitionEffect Kind="FadeIn" />
         </materialDesign:TransitioningContent.OpeningEffects>
-        <Grid Margin="10,0">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock
-                Margin="15,0"
-                VerticalAlignment="Center"
-                d:Text="测试标题"
-                FontSize="36"
-                FontWeight="Bold"
-                Text="{Binding ViewTitle}" />
+            <materialDesign:ColorZone Mode="PrimaryLight">
+                <Grid>
+                    <TextBlock
+                        d:Text="测试标题"
+                        Style="{DynamicResource PanelTitle}"
+                        Text="{Binding ViewTitle}" />
+                    <Rectangle
+                        Height="1"
+                        VerticalAlignment="Bottom"
+                        Fill="Gray" />
+                </Grid>
+            </materialDesign:ColorZone>
+
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -39,112 +54,183 @@
                 </Grid.ColumnDefinitions>
                 <Grid>
                     <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Button
-                                    Margin="10,0"
-                                    Command="{Binding ChangeDockInfoDemo}"
-                                    CommandParameter="add">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon
-                                            Margin="0,0,15,0"
-                                            Kind="AddBold" />
-                                        <TextBlock
-                                            FontWeight="Bold"
-                                            Text="添加" />
-                                    </StackPanel>
-                                </Button>
-                                <Button
-                                    Background="Red"
-                                    BorderBrush="Red"
-                                    Command="{Binding ChangeDockInfoDemo}"
-                                    CommandParameter="remove">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon
-                                            Margin="0,0,15,0"
-                                            Kind="MinusThick" />
-                                        <TextBlock
-                                            FontWeight="Bold"
-                                            Text="删除" />
-                                    </StackPanel>
-                                </Button>
+                        <StackPanel Margin="10">
+                            <!--  成功的案例  -->
+                            <StackPanel>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource PanelChildTitle}"
+                                    Text="DockPanel 控件主要选项组合" />
+                                <DockPanel LastChildFill="{Binding LastChildFill}">
+                                    <PanelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[0]}" />
+                                    <PanelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[1]}" />
+                                    <PanelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[2]}" />
+                                    <PanelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[3]}" />
+                                    <PanelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[4]}" />
+                                    <PanelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[5]}" />
+                                </DockPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon
+                                        VerticalAlignment="Center"
+                                        Kind="Information" />
+                                    <Label Content="请尝试修改这些选项" />
+                                </StackPanel>
+                                <Rectangle Style="{StaticResource PageSectionSeparator}" />
                             </StackPanel>
-                            <ItemsControl
-                                d:ItemsSource="{d:SampleData ItemCount=10}"
-                                ItemsSource="{Binding DockInfoDemoList}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <DockPanel LastChildFill="{Binding LastChildFill}" />
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <materialDesign:TransitioningContent
-                                            DockPanel.Dock="{Binding SelectedDock}"
-                                            OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.06}">
-                                            <materialDesign:TransitioningContent.OpeningEffects>
-                                                <!--  ItemControl内部的元素的动画效果 可以叠加  -->
-                                                <materialDesign:TransitionEffect Kind="ExpandIn" />
-                                                <materialDesign:TransitionEffect Kind="FadeIn" />
-                                            </materialDesign:TransitioningContent.OpeningEffects>
+                            <!--  标准常规使用案例  -->
+                            <StackPanel>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource PanelChildTitle}"
+                                    Text="DockPanel 标准常规使用案例" />
+                                <StackPanel Margin="10,0,10,10">
+                                    <DockPanel
+                                        Height="600"
+                                        LastChildFill="{Binding LastChildFill}">
+                                        <Button
+                                            Width="auto"
+                                            Height="auto"
+                                            Margin="2"
+                                            Content="Left"
+                                            DockPanel.Dock="Left" />
+                                        <Button
+                                            Width="auto"
+                                            Height="auto"
+                                            Margin="2"
+                                            Content="Top"
+                                            DockPanel.Dock="Top" />
+                                        <Button
+                                            Width="auto"
+                                            Height="auto"
+                                            Margin="2"
+                                            Content="Right"
+                                            DockPanel.Dock="Right" />
+                                        <Button
+                                            Width="auto"
+                                            Height="auto"
+                                            Margin="2"
+                                            Content="Bottom"
+                                            DockPanel.Dock="Bottom" />
+                                        <Button
+                                            Width="auto"
+                                            Height="auto"
+                                            Margin="2"
+                                            Content="LastChild"
+                                            DockPanel.Dock="Top" />
+                                    </DockPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon
+                                        VerticalAlignment="Center"
+                                        Kind="Information" />
+                                    <Label Content="因为本例中的ItemsControl中的内容并不属于DockPanel的直接下级，所以DockPanel.Dock的设置不会生效" />
+                                </StackPanel>
+                                <Rectangle Style="{StaticResource PageSectionSeparator}" />
+                            </StackPanel>
+                            <!--  失败的案列  这个后期转移到其他空间  -->
+                            <StackPanel>
+                                <TextBlock
+                                    Grid.Row="1"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource PanelChildTitle}"
+                                    Text="DockPanel布局控件" />
 
-                                            <materialDesign:Card
-                                                Width="{Binding Width}"
-                                                Height="{Binding Height}"
-                                                Margin="10"
-                                                materialDesign:ElevationAssist.Elevation="Dp6">
-                                                <StackPanel Margin="15">
-                                                    <TextBlock
-                                                        FontSize="26"
-                                                        FontWeight="Bold"
-                                                        Text="{Binding Index, StringFormat='No.{0}'}" />
-                                                    <ComboBox
-                                                        Margin="5"
-                                                        materialDesign:HintAssist.Hint="DockPanel.Dock"
-                                                        materialDesign:HintAssist.IsFloating="True"
-                                                        ItemsSource="{x:Static core:EnumListItem.DockOptions}"
-                                                        SelectedItem="{Binding SelectedDock}" />
-                                                    <StackPanel Margin="0,20,0,0">
-                                                        <Slider
-                                                            materialDesign:SliderAssist.HideActiveTrack="False"
-                                                            Maximum="{x:Static core:ControlDemoInfo.MaxHeight}"
-                                                            Minimum="200"
-                                                            Value="{Binding Height}" />
-                                                        <Slider
-                                                            Margin="0,15,0,0"
-                                                            Maximum="{x:Static core:ControlDemoInfo.MaxWidth}"
-                                                            Minimum="{x:Static core:ControlDemoInfo.MinWidth}"
-                                                            Value="{Binding Width}" />
+                                <ItemsControl
+                                    d:ItemsSource="{d:SampleData ItemCount=10}"
+                                    ItemsSource="{Binding DockInfoDemoList}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <DockPanel LastChildFill="{Binding LastChildFill}" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:TransitioningContent
+                                                DockPanel.Dock="{Binding SelectedDock}"
+                                                OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.06}">
+                                                <materialDesign:TransitioningContent.OpeningEffects>
+                                                    <!--  ItemControl内部的元素的动画效果 可以叠加  -->
+                                                    <materialDesign:TransitionEffect Kind="ExpandIn" />
+                                                    <materialDesign:TransitionEffect Kind="FadeIn" />
+                                                </materialDesign:TransitioningContent.OpeningEffects>
+
+                                                <materialDesign:Card
+                                                    Width="{Binding Width}"
+                                                    Height="{Binding Height}"
+                                                    Margin="10"
+                                                    materialDesign:ElevationAssist.Elevation="Dp6">
+                                                    <StackPanel Margin="15">
+                                                        <TextBlock
+                                                            FontSize="26"
+                                                            FontWeight="Bold"
+                                                            Text="{Binding Index, StringFormat='No.{0}'}" />
+                                                        <ComboBox
+                                                            Margin="5"
+                                                            materialDesign:HintAssist.Hint="DockPanel.Dock"
+                                                            materialDesign:HintAssist.IsFloating="True"
+                                                            ItemsSource="{x:Static core:EnumListItem.DockOptions}"
+                                                            SelectedItem="{Binding SelectedDock}" />
+                                                        <StackPanel Margin="0,20,0,0">
+                                                            <Slider
+                                                                materialDesign:SliderAssist.HideActiveTrack="False"
+                                                                Maximum="{x:Static core:ControlDemoInfo.MaxHeight}"
+                                                                Minimum="200"
+                                                                Value="{Binding Height}" />
+                                                            <Slider
+                                                                Margin="0,15,0,0"
+                                                                Maximum="{x:Static core:ControlDemoInfo.MaxWidth}"
+                                                                Minimum="{x:Static core:ControlDemoInfo.MinWidth}"
+                                                                Value="{Binding Width}" />
+                                                        </StackPanel>
                                                     </StackPanel>
-                                                </StackPanel>
-                                            </materialDesign:Card>
-                                        </materialDesign:TransitioningContent>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    VerticalAlignment="Center"
-                                    Kind="Information" />
-                                <Label Content="因为本例中的ItemsControl中的内容并不属于DockPanel的直接下级，所以DockPanel.Dock的设置不会生效" />
+                                                </materialDesign:Card>
+                                            </materialDesign:TransitioningContent>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <StackPanel
+                                    Margin="0,15,0,0"
+                                    Orientation="Horizontal">
+                                    <Button
+                                        Margin="10,0"
+                                        Command="{Binding ChangeDockInfoDemo}"
+                                        CommandParameter="add">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon
+                                                Margin="0,0,15,0"
+                                                Kind="AddBold" />
+                                            <TextBlock
+                                                FontWeight="Bold"
+                                                Text="添加" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button
+                                        Background="Red"
+                                        BorderBrush="Red"
+                                        Command="{Binding ChangeDockInfoDemo}"
+                                        CommandParameter="remove">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon
+                                                Margin="0,0,15,0"
+                                                Kind="MinusThick" />
+                                            <TextBlock
+                                                FontWeight="Bold"
+                                                Text="删除" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon
+                                        VerticalAlignment="Center"
+                                        Kind="Information" />
+                                    <Label Content="因为本例中的ItemsControl中的内容并不属于DockPanel的直接下级，所以DockPanel.Dock的设置不会生效" />
+                                </StackPanel>
+                                <!--  分割线  -->
+                                <Rectangle Style="{StaticResource PageSectionSeparator}" />
                             </StackPanel>
-                            <Rectangle Style="{StaticResource PageSectionSeparator}" />
 
-                            <DockPanel LastChildFill="{Binding LastChildFill}">
-                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[0]}" />
-                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[1]}" />
-                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[2]}" />
-                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[3]}" />
-                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[4]}" />
-                                <PanelChild:DockChildControl DataContext="{Binding DockInfoDemo2List[5]}" />
-                            </DockPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon
-                                    VerticalAlignment="Center"
-                                    Kind="Information" />
-                                <Label Content="请尝试修改这些选项" />
-                            </StackPanel>
-                            <Rectangle Style="{StaticResource PageSectionSeparator}" />
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
@@ -171,7 +257,8 @@
                         </StackPanel>
                         <Button
                             Margin="0,10"
-                            Command="{Binding ResetControlsCommand}">
+                            Command="{Binding ResetControlsCommand}"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}">
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon
                                     Width="25"

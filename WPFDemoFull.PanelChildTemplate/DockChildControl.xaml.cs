@@ -25,14 +25,10 @@ public partial class DockChildControl : UserControl
     public DockChildControl()
     {
         InitializeComponent();
-        Loaded += DockChildControl_Loaded;
         DataContext = DockInfos;
     }
 
-    private void DockChildControl_Loaded(object sender, RoutedEventArgs e)
-    {
-        DockInfos ??= new();
-    }
+
 
 
     [Bindable(true)]
@@ -48,7 +44,7 @@ public partial class DockChildControl : UserControl
         typeof(DockInfo),
         typeof(DockChildControl),
         new FrameworkPropertyMetadata(
-        (DockInfo)null,
+        new DockInfo(),
         new PropertyChangedCallback(OnDockInfosChanged)
         )
     );

@@ -18,5 +18,4 @@ public class StackPanelDemoViewModel : ViewModelBase
 		get { return _index; }
 		set { SetProperty(ref _index, value); }
 	}
-
 }

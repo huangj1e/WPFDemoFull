@@ -2,6 +2,7 @@
     x:Class="WPFDemoFull.PanelChildTemplate.DockChildControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:WPFDemoFull.Core.Converters;assembly=WPFDemoFull.Core"
     xmlns:core="clr-namespace:WPFDemoFull.Core.Models;assembly=WPFDemoFull.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPFDemoFull.PanelChildTemplate"
@@ -13,6 +14,15 @@
     d:DesignWidth="200"
     DockPanel.Dock="{Binding SelectedDock}"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--  转换器  -->
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/MaterialDesignStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <materialDesign:Card
             x:Name="Card1"
@@ -31,6 +41,33 @@
                     FontSize="26"
                     FontWeight="Bold"
                     Text="{Binding Index, StringFormat=No. {0}}" />
+                <!--  滑块  -->
+                <TextBlock
+                    Margin="5"
+                    d:Text="Height: 450"
+                    Text="{Binding Height, Mode=TwoWay, StringFormat='Height: {0:F2}'}" />
+                <Slider
+                    Margin="5"
+                    Maximum="{x:Static core:ControlDemoInfo.MaxHeight}"
+                    Minimum="{x:Static core:ControlDemoInfo.MinHeight}"
+                    Value="{Binding Height}" />
+                <TextBlock
+                    Margin="5"
+                    d:Text="Width: 260"
+                    Text="{Binding Width, Mode=TwoWay, StringFormat='Width: {0:F2}'}" />
+                <Slider
+                    Margin="5"
+                    d:Maximum="450"
+                    d:Minimum="120"
+                    d:Value="260"
+                    Maximum="{x:Static core:ControlDemoInfo.MaxWidth}"
+                    Minimum="{x:Static core:ControlDemoInfo.MinWidth}"
+                    Value="{Binding Width}" />
+                <!--  分割线  -->
+                <Rectangle
+                    Margin="0,10"
+                    Style="{StaticResource PageSectionSeparator}" />
+
                 <ComboBox
                     Margin="5"
                     d:ItemsSource="{x:Static core:EnumListItem.DockOptions}"
@@ -39,65 +76,42 @@
                     materialDesign:HintAssist.Hint="DockPanel.Dock"
                     materialDesign:HintAssist.IsFloating="True"
                     ItemsSource="{x:Static core:EnumListItem.DockOptions}"
-                    SelectedItem="{Binding SelectedDock}" />
-                <StackPanel>
-                    <ComboBox
-                        Margin="5"
-                        d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                        d:SelectedIndex="0"
-                        materialDesign:HintAssist.Hint="HorizontalAlignment"
-                        materialDesign:HintAssist.IsFloating="True"
-                        ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                        SelectedItem="{Binding HorizontalAlignment}" />
-                    <ComboBox
-                        Margin="5"
-                        d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                        d:SelectedIndex="0"
-                        materialDesign:HintAssist.Hint="HorizontalContentAlignment"
-                        materialDesign:HintAssist.IsFloating="True"
-                        ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                        SelectedItem="{Binding HorizontalContentAlignment}" />
-                    <ComboBox
-                        Margin="5"
-                        d:ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
-                        d:SelectedIndex="0"
-                        materialDesign:HintAssist.Hint="VerticalAlignment"
-                        materialDesign:HintAssist.IsFloating="True"
-                        ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
-                        SelectedItem="{Binding VerticalAlignment}" />
-                    <ComboBox
-                        Margin="5"
-                        d:ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
-                        d:SelectedIndex="0"
-                        materialDesign:HintAssist.Hint="VerticalContentAlignment"
-                        materialDesign:HintAssist.IsFloating="True"
-                        ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
-                        SelectedItem="{Binding VerticalContentAlignment}" />
-                    <!--<Rectangle
-                 Margin="0,10"
-                 Style="{StaticResource PageSectionSeparator}" />-->
-                    <TextBlock
-                        Margin="5"
-                        d:Text="Height: 450"
-                        Text="{Binding Height, Mode=TwoWay, StringFormat='Height: {0:F2}'}" />
-                    <Slider
-                        Margin="5"
-                        Maximum="{x:Static core:ControlDemoInfo.MaxHeight}"
-                        Minimum="{x:Static core:ControlDemoInfo.MinHeight}"
-                        Value="{Binding Height}" />
-                    <TextBlock
-                        Margin="5"
-                        d:Text="Width: 260"
-                        Text="{Binding Width, Mode=TwoWay, StringFormat='Width: {0:F2}'}" />
-                    <Slider
-                        Margin="5"
-                        d:Maximum="450"
-                        d:Minimum="120"
-                        d:Value="260"
-                        Maximum="{x:Static core:ControlDemoInfo.MaxWidth}"
-                        Minimum="{x:Static core:ControlDemoInfo.MinWidth}"
-                        Value="{Binding Width}" />
-                </StackPanel>
+                    SelectedItem="{Binding SelectedDock}"
+                    Visibility="{Binding IsShowDockOptions, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <ComboBox
+                    Margin="5"
+                    d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                    d:SelectedIndex="0"
+                    materialDesign:HintAssist.Hint="HorizontalAlignment"
+                    materialDesign:HintAssist.IsFloating="True"
+                    ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                    SelectedItem="{Binding HorizontalAlignment}" />
+                <ComboBox
+                    Margin="5"
+                    d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                    d:SelectedIndex="0"
+                    materialDesign:HintAssist.Hint="HorizontalContentAlignment"
+                    materialDesign:HintAssist.IsFloating="True"
+                    ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                    SelectedItem="{Binding HorizontalContentAlignment}" />
+                <ComboBox
+                    Margin="5"
+                    d:ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
+                    d:SelectedIndex="0"
+                    materialDesign:HintAssist.Hint="VerticalAlignment"
+                    materialDesign:HintAssist.IsFloating="True"
+                    ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
+                    SelectedItem="{Binding VerticalAlignment}" />
+                <ComboBox
+                    Margin="5"
+                    d:ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
+                    d:SelectedIndex="0"
+                    materialDesign:HintAssist.Hint="VerticalContentAlignment"
+                    materialDesign:HintAssist.IsFloating="True"
+                    ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
+                    SelectedItem="{Binding VerticalContentAlignment}" />
+
+
             </StackPanel>
         </materialDesign:Card>
     </Grid>

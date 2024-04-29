@@ -17,7 +17,7 @@
     <Grid>
         <panelChild:CustomControl1
             Background="red"
-            Command="{Binding ResetCommand}">
+            SidePropertyPanelModel="{Binding SidePropertyPanelModel}">
             <StackPanel>
                 <TextBlock Text="123456" />
             </StackPanel>

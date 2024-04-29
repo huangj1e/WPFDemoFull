@@ -54,9 +54,32 @@ namespace WPFDemoFull.PanelChildTemplate
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomControl1), new FrameworkPropertyMetadata(typeof(CustomControl1)));
         }
 
+        public SidePropertyPanelModel SidePropertyPanelModel
+        {
+            get { return (SidePropertyPanelModel)GetValue(SidePropertyPanelModelProperty); }
+            set { SetValue(SidePropertyPanelModelProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SidePropertyPanelModelProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SidePropertyPanelModelProperty = DependencyProperty.Register(
+            "SidePropertyPanelModel",
+            typeof(SidePropertyPanelModel),
+            typeof(CustomControl1),
+            new PropertyMetadata(
+                new SidePropertyPanelModel(),
+                new PropertyChangedCallback(SidePropertyPanelModelChanged)
+                )
+        );
+
+        private static void SidePropertyPanelModelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+        /*
+
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
-            "Command", 
-            typeof(ICommand), 
+            "Command",
+            typeof(ICommand),
             typeof(CustomControl1),
             new PropertyMetadata(
                 null,
@@ -74,13 +97,14 @@ namespace WPFDemoFull.PanelChildTemplate
         }
 
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
-            "CommandParameter", 
-            typeof(object), 
+            "CommandParameter",
+            typeof(object),
             typeof(CustomControl1));
         public object CommandParameter
         {
             get { return GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
-        }
+        }/
+        */
     }
 }

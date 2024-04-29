@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using Prism.Commands;
+using System;
+using System.Windows.Input;
 
 namespace WPFDemoFull.Core.Models;
 
@@ -33,6 +35,16 @@ public class SidePropertyPanelModel
     /// 当前页面ViewModel源码
     /// </summary>
     public LinkString DemoViewModelUrl { get; set; }
+
+    public ICommand OpenUrlCommand => _openUrlCommand;
+
+    readonly DelegateCommand<object> _openUrlCommand = new(url =>
+       {
+           if (url is LinkString link)
+               link.OpenUrl();
+       }
+    );
+
 
     /// <summary>
     /// 重置控件的命令

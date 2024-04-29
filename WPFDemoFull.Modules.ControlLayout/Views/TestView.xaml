@@ -15,12 +15,13 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <Grid>
-        <panelChild:CustomControl1
+        <panelChild:SidePropertyControl
             Background="red"
-            Command="{Binding ResetCommand}">
+            Command="{Binding ResetCommand}"
+            GroupBoxTitle="标题示例">
             <StackPanel>
                 <TextBlock Text="123456" />
             </StackPanel>
-        </panelChild:CustomControl1>
+        </panelChild:SidePropertyControl>
     </Grid>
 </UserControl>

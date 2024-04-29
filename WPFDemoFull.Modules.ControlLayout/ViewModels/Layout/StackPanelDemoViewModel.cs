@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
@@ -40,12 +41,23 @@ public class StackPanelDemoViewModel : ViewModelBase
     }
 
 
+    private DelegateCommand _resetControlsCommand;
+    public DelegateCommand ResetControlsCommand => _resetControlsCommand ??= new DelegateCommand(ExecuteResetControlsCommand);
+
+    void ExecuteResetControlsCommand() => InitPanelChild();
+
+
     private void InitPanelChild()
     {
-        DockInfoList = new();
-        for (int i = 0; i < 6; i++)
+        int index = 0;
+        DockInfoList = new()
         {
-            DockInfoList.Add(new(i));
-        }
+             new(index++),
+             new(index++),
+             new(index++),
+             new(index++),
+             new(index++),
+             new(index++),
+        };
     }
 }

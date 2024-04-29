@@ -23,7 +23,7 @@ public class GridInfo : BindableBase
     /// 用于绑定 Grid 的 Column
     /// </summary>
 
-    public int Col
+    public int Column
     {
         get { return _col; }
         set { SetProperty(ref _col, value); }

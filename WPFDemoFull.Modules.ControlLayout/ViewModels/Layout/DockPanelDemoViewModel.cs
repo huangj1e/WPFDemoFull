@@ -87,8 +87,6 @@ public class DockPanelDemoViewModel : ViewModelBase
     /// </summary>
     public DelegateCommand ResetControlsCommand => _resetControlsCommand ??= new DelegateCommand(CreatDockInfoDemoList);
 
-
-
     private DelegateCommand<string> _changeDockInfoDemo;
     /// <summary>
     /// 添加和删除 DockInfoDemoList 的子集

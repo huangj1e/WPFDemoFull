@@ -68,17 +68,22 @@
                 <Rectangle
                     Margin="0,10"
                     Style="{StaticResource PageSectionSeparator}" />
+                <Grid>
+                    <ComboBox
+                        Margin="5"
+                        d:ItemsSource="{x:Static core:EnumListItem.DockOptions}"
+                        d:SelectedIndex="1"
+                        d:Width="130"
+                        materialDesign:HintAssist.Hint="DockPanel.Dock"
+                        materialDesign:HintAssist.IsFloating="True"
+                        ItemsSource="{x:Static core:EnumListItem.DockOptions}"
+                        SelectedItem="{Binding SelectedDock}"
+                        Visibility="{Binding IsShowDockOptions, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    <materialDesign:PackIcon
+                        HorizontalAlignment="Right"
+                        Kind="Information" />
+                </Grid>
 
-                <ComboBox
-                    Margin="5"
-                    d:ItemsSource="{x:Static core:EnumListItem.DockOptions}"
-                    d:SelectedIndex="1"
-                    d:Width="130"
-                    materialDesign:HintAssist.Hint="DockPanel.Dock"
-                    materialDesign:HintAssist.IsFloating="True"
-                    ItemsSource="{x:Static core:EnumListItem.DockOptions}"
-                    SelectedItem="{Binding SelectedDock}"
-                    Visibility="{Binding IsShowDockOptions, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <ComboBox
                     Margin="5"
                     d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"

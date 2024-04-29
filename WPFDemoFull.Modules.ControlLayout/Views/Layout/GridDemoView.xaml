@@ -14,7 +14,7 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight}">
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80" />
@@ -38,48 +38,90 @@
                     </Grid.ColumnDefinitions>
                     <materialDesign:Card
                         Grid.Row="{Binding GridInfo.Row}"
-                        Grid.Column="{Binding GridInfo.Col}"
+                        Grid.Column="{Binding GridInfo.Column}"
                         Margin="15">
-                        <UniformGrid
-                            Columns="2"
-                            Rows="2">
-                            <Button
-                                Height="auto"
-                                Margin="5"
-                                Command="{Binding MoveToDefinitionCommand}"
-                                CommandParameter="1">
+                        <DockPanel>
+                            <StackPanel
+                                Margin="5,0,5,10"
+                                DockPanel.Dock="Top"
+                                Orientation="Horizontal">
                                 <TextBlock
-                                    FontSize="72"
-                                    Text="1" />
-                            </Button>
-                            <Button
-                                Height="auto"
-                                Margin="5"
-                                Command="{Binding MoveToDefinitionCommand}"
-                                CommandParameter="2">
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Text="{Binding GridInfo.Row, StringFormat='Grid.Row:{0}'}" />
                                 <TextBlock
-                                    FontSize="72"
-                                    Text="2" />
-                            </Button>
-                            <Button
-                                Height="auto"
-                                Margin="5"
-                                Command="{Binding MoveToDefinitionCommand}"
-                                CommandParameter="3">
-                                <TextBlock
-                                    FontSize="72"
-                                    Text="3" />
-                            </Button>
-                            <Button
-                                Height="auto"
-                                Margin="5"
-                                Command="{Binding MoveToDefinitionCommand}"
-                                CommandParameter="4">
-                                <TextBlock
-                                    FontSize="72"
-                                    Text="4" />
-                            </Button>
-                        </UniformGrid>
+                                    Margin="15,0"
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Text="{Binding GridInfo.Column, StringFormat='Grid.Column:{0}'}" />
+                            </StackPanel>
+                            <UniformGrid
+                                Columns="2"
+                                Rows="2">
+                                <Button
+                                    Height="auto"
+                                    Margin="5"
+                                    Command="{Binding MoveToDefinitionCommand}"
+                                    CommandParameter="0,0">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock
+                                            FontSize="72"
+                                            Text="1" />
+                                        <!--  绑定上层的button  -->
+                                        <TextBlock
+                                            FontSize="24"
+                                            Text="{Binding Path=CommandParameter, RelativeSource={RelativeSource AncestorType=Button}, StringFormat='({0})'}" />
+                                    </StackPanel>
+                                </Button>
+                                <Button
+                                    Height="auto"
+                                    Margin="5"
+                                    Command="{Binding MoveToDefinitionCommand}"
+                                    CommandParameter="0,1">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock
+                                            FontSize="72"
+                                            Text="2" />
+                                        <!--  绑定上层的button  -->
+                                        <TextBlock
+                                            FontSize="24"
+                                            Text="{Binding Path=CommandParameter, RelativeSource={RelativeSource AncestorType=Button}, StringFormat='({0})'}" />
+                                    </StackPanel>
+                                </Button>
+                                <Button
+                                    x:Name="Button3"
+                                    Height="auto"
+                                    Margin="5"
+                                    Command="{Binding MoveToDefinitionCommand}"
+                                    CommandParameter="2,0">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock
+                                            FontSize="72"
+                                            Text="3" />
+                                        <!--  绑定上层的button  -->
+                                        <TextBlock
+                                            FontSize="24"
+                                            Text="{Binding Path=CommandParameter, RelativeSource={RelativeSource AncestorType=Button}, StringFormat='({0})'}" />
+                                    </StackPanel>
+                                </Button>
+                                <Button
+                                    Height="auto"
+                                    Margin="5"
+                                    Command="{Binding MoveToDefinitionCommand}"
+                                    CommandParameter="2,1">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock
+                                            FontSize="72"
+                                            Text="4" />
+                                        <!--  绑定上层的button  -->
+                                        <TextBlock
+                                            FontSize="24"
+                                            Text="{Binding Path=CommandParameter, RelativeSource={RelativeSource AncestorType=Button}, StringFormat='({0})'}" />
+                                    </StackPanel>
+                                </Button>
+                            </UniformGrid>
+                        </DockPanel>
+
                     </materialDesign:Card>
                     <!--  水平  -->
                     <GridSplitter

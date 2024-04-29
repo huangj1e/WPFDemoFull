@@ -1,4 +1,5 @@
 ﻿using Prism.Commands;
+using System.Linq;
 using WPFDemoFull.Core.Models;
 using WPFDemoFull.Core.Mvvm;
 using WPFDemoFull.LangResource.Interface;
@@ -19,6 +20,9 @@ public class GridDemoViewModel : ViewModelBase
 
     void ExecuteMoveToDefinitionCommand(string parameter)
     {
+        int[] rowColArray = parameter.Split(',').Select(int.Parse).ToArray();
 
+        GridInfo.Row = rowColArray[0];
+        GridInfo.Column = rowColArray[1];
     }
 }

@@ -34,18 +34,10 @@
                 <RowDefinition Height="80" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <materialDesign:ColorZone Mode="PrimaryLight">
-                <Grid>
-                    <TextBlock
-                        d:Text="测试标题"
-                        Style="{DynamicResource PanelTitle}"
-                        Text="{Binding ViewTitle}" />
-                    <Rectangle
-                        Height="1"
-                        VerticalAlignment="Bottom"
-                        Fill="Gray" />
-                </Grid>
-            </materialDesign:ColorZone>
+            <TextBlock
+                d:Text="测试标题"
+                Style="{DynamicResource PanelTitle}"
+                Text="{Binding ViewTitle}" />
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>

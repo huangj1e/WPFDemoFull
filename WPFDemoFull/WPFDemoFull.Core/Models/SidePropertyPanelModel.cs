@@ -1,10 +1,4 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Input;
 
 namespace WPFDemoFull.Core.Models;
 
@@ -18,29 +12,32 @@ public class SidePropertyPanelModel
     /// </summary>
     public string GroupBoxTitle { get; set; }
 
-    /// <summary>
-    /// 重置控件的命令
-    /// </summary>
-    public DelegateCommand ResetControlCommand { get; set; }
+
 
     /// <summary>
     /// WPF 源码链接
     /// </summary>
-    public string SourceCodeUrl { get; set; }
-
+    public LinkString SourceCodeUrl { get; set; }
 
     /// <summary>
     /// 微软定义链接
     /// </summary>
-    public string ControlDefinedUrl { get; set; }
+    public LinkString ControlDefinedUrl { get; set; }
 
     /// <summary>
     /// 当前页面Xaml源码 
     /// </summary>
-    public string DemoViewUrl { get; set; }
+    public LinkString DemoViewUrl { get; set; }
 
     /// <summary>
     /// 当前页面ViewModel源码
     /// </summary>
-    public string DemoViewModelUrl { get; set; }
+    public LinkString DemoViewModelUrl { get; set; }
+
+    /// <summary>
+    /// 重置控件的命令
+    /// </summary>
+    public ICommand Command { get; set; }
+
+    public object CommandParameter { get; set; }
 }

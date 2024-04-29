@@ -1,9 +1,5 @@
 ﻿using Prism.Commands;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using WPFDemoFull.Core.Models;
 using WPFDemoFull.Core.Mvvm;
 using WPFDemoFull.LangResource.Interface;

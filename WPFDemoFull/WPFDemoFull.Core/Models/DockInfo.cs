@@ -4,6 +4,9 @@ using System.Windows.Controls;
 
 namespace WPFDemoFull.Core.Models;
 
+/// <summary>
+/// 这些值的改变会影响到控件的布局，并且实时更新，所以要继承 BindableBase
+/// </summary>
 public class DockInfo : BindableBase
 {
     private HorizontalAlignment _horizontalAlignment;
@@ -44,7 +47,6 @@ public class DockInfo : BindableBase
         get { return _index; }
         set { SetProperty(ref _index, value); }
     }
-
 
     private Dock _selectedDock;
     public Dock SelectedDock
@@ -89,10 +91,10 @@ public class DockInfo : BindableBase
     /// <summary>
     /// 一个示例用的用户控件Model
     /// </summary>
-    /// <param name="index">控件Id，用于分辨外观相同的不同控件</param>
-    /// <param name="isshowDockOptions">是否显示DockOptions ComboBox</param>
-    /// <param name="width">控件的初始宽</param>
-    /// <param name="height">控件的初始高</param>
+    /// <param _name="index">控件Id，用于分辨外观相同的不同控件</param>
+    /// <param _name="isshowDockOptions">是否显示DockOptions ComboBox</param>
+    /// <param _name="width">控件的初始宽</param>
+    /// <param _name="height">控件的初始高</param>
     public DockInfo(
         int index = 0,
         bool isshowDockOptions = false,

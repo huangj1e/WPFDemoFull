@@ -2,25 +2,29 @@
 
 namespace WPFDemoFull.Core.Models;
 
+
+/// <summary>
+/// 控件Grid 的子项布局信息
+/// </summary>
 public class GridInfo : BindableBase
 {
     /// <summary>
     /// 修改Grid 的 Name
     /// </summary>
-    /// <param name="name"></param>
+    /// <param _name="name"></param>
     public void ChangeName(string name) => Name = name;
 
-    private string name;
+    private string _name;
 
     public string Name
     {
-        get { return name; }
-        set { SetProperty(ref name, value); }
+        get { return _name; }
+        set { SetProperty(ref _name, value); }
     }
 
     private int _col;
     /// <summary>
-    /// 用于绑定 Grid 的 Column
+    /// 用于绑定 Grid.Column
     /// </summary>
 
     public int Column
@@ -32,7 +36,7 @@ public class GridInfo : BindableBase
     private int _row;
 
     /// <summary>
-    /// 用于绑定 Grid 的 Row
+    /// 用于绑定 Grid.Row
     /// </summary>
     public int Row
     {

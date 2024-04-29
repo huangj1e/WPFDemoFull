@@ -37,5 +37,7 @@ public class ControlLayoutModule : IModule
         containerRegistry.RegisterForNavigation<UniformGridDemoView, UniformGridDemoViewModel>();
         containerRegistry.RegisterForNavigation<ViewBoxDemoView, ViewBoxDemoViewModel>();
         containerRegistry.RegisterForNavigation<WrapPanelDemoView, WrapPanelDemoViewModel>();
+
+        containerRegistry.RegisterForNavigation<TestView, TestViewModel>();
     }
 }

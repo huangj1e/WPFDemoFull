@@ -1,4 +1,10 @@
-﻿using System.Text;
+﻿using Prism.Commands;
+using System;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,43 +14,73 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFDemoFull.Core.Models;
 
 namespace WPFDemoFull.PanelChildTemplate
 {
     /// <summary>
-    /// Follow steps 1a or 1b and then 2 to use this custom control in a XAML file.
+    /// 按照步骤 1a 或 1b 操作，然后执行步骤 2 以在 XAML 文件中使用此自定义控件。
     ///
-    /// Step 1a) Using this custom control in a XAML file that exists in the current project.
-    /// Add this XmlNamespace attribute to the root element of the markup file where it is 
-    /// to be used:
+    /// 步骤 1a) 在当前项目中存在的 XAML 文件中使用该自定义控件。
+    /// 将此 XmlNamespace 特性添加到要使用该特性的标记文件的根
+    /// 元素中:
     ///
     ///     xmlns:MyNamespace="clr-namespace:WPFDemoFull.PanelChildTemplate"
     ///
     ///
-    /// Step 1b) Using this custom control in a XAML file that exists in a different project.
-    /// Add this XmlNamespace attribute to the root element of the markup file where it is 
-    /// to be used:
+    /// 步骤 1b) 在其他项目中存在的 XAML 文件中使用该自定义控件。
+    /// 将此 XmlNamespace 特性添加到要使用该特性的标记文件的根
+    /// 元素中:
     ///
     ///     xmlns:MyNamespace="clr-namespace:WPFDemoFull.PanelChildTemplate;assembly=WPFDemoFull.PanelChildTemplate"
     ///
-    /// You will also need to add a project reference from the project where the XAML file lives
-    /// to this project and Rebuild to avoid compilation errors:
+    /// 您还需要添加一个从 XAML 文件所在的项目到此项目的项目引用，
+    /// 并重新生成以避免编译错误:
     ///
-    ///     Right click on the target project in the Solution Explorer and
-    ///     "Add Reference"->"Projects"->[Select this project]
+    ///     在解决方案资源管理器中右击目标项目，然后依次单击
+    ///     “添加引用”->“项目”->[浏览查找并选择此项目]
     ///
     ///
-    /// Step 2)
-    /// Go ahead and use your control in the XAML file.
+    /// 步骤 2)
+    /// 继续操作并在 XAML 文件中使用控件。
     ///
     ///     <MyNamespace:CustomControl1/>
     ///
     /// </summary>
-    public class CustomControl1 : Control
+    public class CustomControl1 : ContentControl
     {
         static CustomControl1()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomControl1), new FrameworkPropertyMetadata(typeof(CustomControl1)));
+        }
+
+        public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
+            "Command", 
+            typeof(ICommand), 
+            typeof(CustomControl1),
+            new PropertyMetadata(
+                null,
+                new PropertyChangedCallback(OnCommandChanged)
+            )
+        );
+
+        private static void OnCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+        }
+        public ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
+            "CommandParameter", 
+            typeof(object), 
+            typeof(CustomControl1));
+        public object CommandParameter
+        {
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
         }
     }
 }

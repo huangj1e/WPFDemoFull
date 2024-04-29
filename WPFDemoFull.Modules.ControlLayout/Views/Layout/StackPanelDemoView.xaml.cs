@@ -10,7 +10,7 @@ public partial class StackPanelDemoView : UserControl
 {
     public StackPanelDemoView() => InitializeComponent();
 
-    private void OpenStackPanelDefined(object sender, System.Windows.RoutedEventArgs e) => 
+    private void OpenStackPanelDefined(object sender, System.Windows.RoutedEventArgs e) =>
         Link.OpenInBrowser(@"https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.stackpanel?view=winrt-22621");
 
     private void OpenStackPanelSourceCode(object sender, System.Windows.RoutedEventArgs e)

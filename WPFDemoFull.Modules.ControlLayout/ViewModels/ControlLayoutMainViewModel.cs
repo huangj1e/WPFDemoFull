@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.Generic;
 using WPFDemoFull.Core.Models;
+using WPFDemoFull.Modules.ControlLayout.Views;
 using WPFDemoFull.Modules.ControlLayout.Views.Layout;
 
 namespace WPFDemoFull.Modules.ControlLayout.ViewModels;
@@ -68,6 +69,12 @@ public class ControlLayoutMainViewModel : BindableBase
                 Title = "WrapnPanel",
                 Icon="FormatWrapInline" ,
                 NavViewName=nameof(WrapPanelDemoView)
+            },
+            new(){
+                Name = "Test" ,
+                Title = "Test",
+                Icon="TestTube" ,
+                NavViewName=nameof(TestView)
             },
         };
     }

@@ -1,5 +1,8 @@
 ﻿namespace WPFDemoFull.Core.Models;
 
+/// <summary>
+/// 控制 DemoCotrol 可调整的的尺寸范围信息
+/// </summary>
 public class ControlDemoInfo
 {
     public static readonly double MinWidth = 150;

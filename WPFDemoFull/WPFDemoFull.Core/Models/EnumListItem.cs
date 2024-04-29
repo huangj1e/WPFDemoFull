@@ -5,6 +5,10 @@ using System.Windows.Controls;
 
 namespace WPFDemoFull.Core.Models;
 
+
+/// <summary>
+/// 从枚举中获取枚举的列表
+/// </summary>
 public class EnumListItem
 {
     public static IEnumerable<Dock> DockOptions { get => Enum.GetValues(typeof(Dock)) as IEnumerable<Dock>; }

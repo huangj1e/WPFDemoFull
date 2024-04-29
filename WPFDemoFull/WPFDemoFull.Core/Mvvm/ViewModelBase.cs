@@ -32,7 +32,7 @@ public abstract class ViewModelBase :
     /// <summary>
     /// 进入
     /// </summary>
-    /// <param name="navigationContext"></param>
+    /// <param _name="navigationContext"></param>
     public void OnNavigatedTo(NavigationContext navigationContext)
     {
         ViewTitle = navigationContext.Parameters.GetValue<string>("ViewTitle");
@@ -43,7 +43,7 @@ public abstract class ViewModelBase :
     /// <summary>
     /// 出去
     /// </summary>
-    /// <param name="navigationContext"></param>
+    /// <param _name="navigationContext"></param>
     public void OnNavigatedFrom(NavigationContext navigationContext)
     {
     }

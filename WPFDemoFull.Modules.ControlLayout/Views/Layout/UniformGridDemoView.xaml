@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:WPFDemoFull.Modules.ControlLayout.ViewModels.Layout"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:panelChild="clr-namespace:WPFDemoFull.PanelChildTemplate;assembly=WPFDemoFull.PanelChildTemplate"
     xmlns:prism="http://prismlibrary.com/"
     d:Background="White"
     d:DataContext="{d:DesignInstance Type=local:UniformGridDemoViewModel}"
@@ -17,7 +18,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80" />
-                <RowDefinition />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock
                 Margin="15,0"
@@ -27,7 +28,6 @@
                 FontWeight="Bold"
                 Text="{Binding ViewTitle}" />
         </Grid>
-
     </materialDesign:TransitioningContent>
 
 </UserControl>

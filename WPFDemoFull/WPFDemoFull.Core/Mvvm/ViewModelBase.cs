@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Regions;
+using WPFDemoFull.Core.Models;
 using WPFDemoFull.LangResource.Interface;
 
 namespace WPFDemoFull.Core.Mvvm;
@@ -28,7 +29,6 @@ public abstract class ViewModelBase :
     {
 
     }
-
     /// <summary>
     /// 进入
     /// </summary>

@@ -2,13 +2,13 @@
     x:Class="WPFDemoFull.Modules.ControlLayout.Views.Layout.StackPanelDemoView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:PanelChild="clr-namespace:WPFDemoFull.PanelChildTemplate;assembly=WPFDemoFull.PanelChildTemplate"
     xmlns:converters="clr-namespace:WPFDemoFull.Core.Converters;assembly=WPFDemoFull.Core"
     xmlns:core="clr-namespace:WPFDemoFull.Core.Models;assembly=WPFDemoFull.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPFDemoFull.Modules.ControlLayout.ViewModels.Layout"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:panelChild="clr-namespace:WPFDemoFull.PanelChildTemplate;assembly=WPFDemoFull.PanelChildTemplate"
     xmlns:prism="http://prismlibrary.com/"
     d:Background="White"
     d:DataContext="{d:DesignInstance Type=local:StackPanelDemoViewModel}"
@@ -31,7 +31,6 @@
                 <RowDefinition Height="80" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <materialDesign:Card />
             <TextBlock
                 Margin="15,0"
                 VerticalAlignment="Center"
@@ -52,140 +51,50 @@
                     <StackPanel>
                         <StackPanel
                             HorizontalAlignment="{Binding ElementName=ComboBoxHorizontalAlignment, Path=SelectedItem}"
-                            VerticalAlignment="Bottom"
+                            VerticalAlignment="{Binding ElementName=ComboBoxVerticalAlignment, Path=SelectedItem}"
                             Orientation="{Binding ElementName=ComboBoxOrientation, Path=SelectedItem}">
-                            <PanelChild:DockChildControl DataContext="{Binding DockInfoList[0]}" />
-                            <PanelChild:DockChildControl DataContext="{Binding DockInfoList[1]}" />
-                            <PanelChild:DockChildControl DataContext="{Binding DockInfoList[2]}" />
-                            <PanelChild:DockChildControl DataContext="{Binding DockInfoList[3]}" />
-                            <PanelChild:DockChildControl DataContext="{Binding DockInfoList[4]}" />
-                            <PanelChild:DockChildControl DataContext="{Binding DockInfoList[5]}" />
+                            <panelChild:DockChildControl DataContext="{Binding DockInfoList[0]}" />
+                            <panelChild:DockChildControl DataContext="{Binding DockInfoList[1]}" />
+                            <panelChild:DockChildControl DataContext="{Binding DockInfoList[2]}" />
+                            <panelChild:DockChildControl DataContext="{Binding DockInfoList[3]}" />
+                            <panelChild:DockChildControl DataContext="{Binding DockInfoList[4]}" />
+                            <panelChild:DockChildControl DataContext="{Binding DockInfoList[5]}" />
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
-                <GroupBox
+                <panelChild:SidePropertyControl
                     Grid.Column="1"
                     Margin="5"
-                    Header="StackPanel 属性">
-                    <Grid>
-                        <StackPanel>
-                            <StackPanel.Resources>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="TextWrapping" Value="Wrap" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <ComboBox
-                                x:Name="ComboBoxOrientation"
-                                materialDesign:HintAssist.Hint="Orientation"
-                                materialDesign:HintAssist.IsFloating="True"
-                                ItemsSource="{x:Static core:EnumListItem.OrientationOptions}"
-                                SelectedIndex="0" />
-                            <ComboBox
-                                x:Name="ComboBoxHorizontalAlignment"
-                                materialDesign:HintAssist.Hint="HorizontalAlignment"
-                                materialDesign:HintAssist.IsFloating="True"
-                                ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                                SelectedIndex="0" />
-                            <ComboBox
-                                x:Name="ComboBoxVerticalAlignment"
-                                materialDesign:HintAssist.Hint="VerticalAlignment"
-                                materialDesign:HintAssist.IsFloating="True"
-                                ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
-                                SelectedIndex="0" />
-                            <StackPanel Margin="0,15,0,0">
-                                <!--  WPF开源源码  -->
-                                <Button
-                                    Margin="0,10"
-                                    Click="OpenStackPanelSourceCode"
-                                    Style="{StaticResource MaterialDesignFlatDarkButton}">
-                                    <StackPanel
-                                        Width="190"
-                                        Orientation="Horizontal">
-                                        <materialDesign:PackIcon
-                                            Width="25"
-                                            Height="25"
-                                            Margin="0,0,10,0"
-                                            VerticalAlignment="Center"
-                                            Kind="Github" />
-                                        <TextBlock
-                                            VerticalAlignment="Center"
-                                            DockPanel.Dock="Right"
-                                            Text="Source Code" />
-                                    </StackPanel>
-                                </Button>
-                                <!--  微软官方定义  -->
-                                <Button
-                                    Margin="0,0,0,10"
-                                    Click="OpenStackPanelDefined"
-                                    Style="{StaticResource MaterialDesignFlatDarkButton}">
-                                    <DockPanel Width="180">
-                                        <materialDesign:PackIcon
-                                            Width="25"
-                                            Height="25"
-                                            Margin="0,0,10,0"
-                                            VerticalAlignment="Center"
-                                            Kind="Microsoft" />
-                                        <TextBlock
-                                            VerticalAlignment="Center"
-                                            Text="StackPanel Defined" />
-                                    </DockPanel>
-                                </Button>
-                                <!--  DemoView源码  -->
-                                <Button
-                                    Margin="0,5"
-                                    Click="OpenStackPanelDefined"
-                                    Style="{StaticResource MaterialDesignFlatDarkButton}">
-                                    <DockPanel Width="180">
-                                        <materialDesign:PackIcon
-                                            Width="25"
-                                            Height="25"
-                                            Margin="0,0,10,0"
-                                            VerticalAlignment="Center"
-                                            Kind="Xml" />
-                                        <TextBlock
-                                            VerticalAlignment="Center"
-                                            Text="Demo View" />
-                                    </DockPanel>
-                                </Button>
-
-                                <Button
-                                    Margin="0,5"
-                                    Click="OpenStackPanelDefined"
-                                    Style="{StaticResource MaterialDesignFlatDarkButton}">
-                                    <DockPanel Width="180">
-                                        <materialDesign:PackIcon
-                                            Width="25"
-                                            Height="25"
-                                            Margin="0,0,10,0"
-                                            VerticalAlignment="Center"
-                                            Kind="LanguageCsharp" />
-                                        <TextBlock
-                                            VerticalAlignment="Center"
-                                            Text="Demo ViewModel" />
-                                    </DockPanel>
-                                </Button>
-
-                            </StackPanel>
-                        </StackPanel>
-                        <Button
-                            VerticalAlignment="Bottom"
-                            Command="{Binding ResetControlsCommand}"
-                            Style="{StaticResource MaterialDesignFlatMidBgButton}">
-                            <DockPanel HorizontalAlignment="Left">
-                                <materialDesign:PackIcon
-                                    Width="25"
-                                    Height="25"
-                                    VerticalAlignment="Center"
-                                    DockPanel.Dock="Left"
-                                    Kind="Refresh" />
-                                <TextBlock
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Text="重置" />
-                            </DockPanel>
-                        </Button>
-                    </Grid>
-                </GroupBox>
+                    HorizontalAlignment="Stretch"
+                    ControlDefineUrl="{Binding SidePropertyPanelModel.ControlDefinedUrl}"
+                    DemoViewModelUrl="{Binding SidePropertyPanelModel.DemoViewModelUrl}"
+                    DemoViewUrl="{Binding SidePropertyPanelModel.DemoViewUrl}"
+                    GroupBoxTitle="{Binding ViewTitle, StringFormat={x:Static core:FormatText.Attribute}}"
+                    ResetCommand="{Binding SidePropertyPanelModel.ResetCommand}"
+                    SourceCodeUrl="{Binding SidePropertyPanelModel.SourceCodeUrl}">
+                    <StackPanel
+                        Width="auto"
+                        HorizontalAlignment="Stretch">
+                        <ComboBox
+                            x:Name="ComboBoxOrientation"
+                            materialDesign:HintAssist.Hint="Orientation"
+                            materialDesign:HintAssist.IsFloating="True"
+                            ItemsSource="{x:Static core:EnumListItem.OrientationOptions}"
+                            SelectedIndex="0" />
+                        <ComboBox
+                            x:Name="ComboBoxHorizontalAlignment"
+                            materialDesign:HintAssist.Hint="HorizontalAlignment"
+                            materialDesign:HintAssist.IsFloating="True"
+                            ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                            SelectedIndex="0" />
+                        <ComboBox
+                            x:Name="ComboBoxVerticalAlignment"
+                            materialDesign:HintAssist.Hint="VerticalAlignment"
+                            materialDesign:HintAssist.IsFloating="True"
+                            ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
+                            SelectedIndex="0" />
+                    </StackPanel>
+                </panelChild:SidePropertyControl>
             </Grid>
         </Grid>
     </materialDesign:TransitioningContent>

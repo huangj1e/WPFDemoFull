@@ -8,7 +8,7 @@ using WPFDemoFull.LangResource.Interface;
 namespace WPFDemoFull.Modules.ControlLayout.ViewModels.Layout;
 
 
-public class DockPanelDemoViewModel : ViewModelBase
+public class DockPanelDemoViewModel :  ViewModelSidePanelBase
 {
     #region 属性
 
@@ -39,7 +39,32 @@ public class DockPanelDemoViewModel : ViewModelBase
     public DockPanelDemoViewModel(ILanguageService languageService) : base(languageService)
     {
         CreatDockInfoDemoList();
+        InitSiderpanel();
     }
+
+
+    private void InitSiderpanel()
+    {
+        string groupBoxTitle = ViewTitle;
+        string sourceCodeUrl = "https://github.com/dotnet/wpf/blob/33343cb58a1b3967c2ffe3e43f3b1fd4b03f41dd/src/Microsoft.DotNet.Wpf/src/PresentationFramework/System/Windows/Controls/DockPanel.cs#L62";
+
+        string controlDefinedUrl = "https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.dockpanel?view=windowsdesktop-8.0";
+
+        string demoViewUrl = "https://github.com/huangj1e/WPFDemoFull/blob/master/WPFDemoFull.Modules.ControlLayout/Views/Layout/DockPanelDemoView.xaml";
+
+        string demoViewModelUrl = "https://github.com/huangj1e/WPFDemoFull/blob/master/WPFDemoFull.Modules.ControlLayout/ViewModels/Layout/DockPanelDemoViewModel.cs";
+
+
+        SidePropertyPanelModel = new(
+            groupBoxTitle,
+            sourceCodeUrl,
+            controlDefinedUrl,
+            demoViewUrl,
+            demoViewModelUrl,
+            new DelegateCommand(CreatDockInfoDemoList)
+        );
+    }
+
 
     #region Dock 窗口的 6个子控件
 
@@ -79,12 +104,6 @@ public class DockPanelDemoViewModel : ViewModelBase
     }
 
     #region 绑定的命令
-
-    private DelegateCommand _resetControlsCommand;
-    /// <summary>
-    /// 重置控件
-    /// </summary>
-    public DelegateCommand ResetControlsCommand => _resetControlsCommand ??= new DelegateCommand(CreatDockInfoDemoList);
 
     private DelegateCommand<string> _changeDockInfoDemo;
     /// <summary>

@@ -63,21 +63,107 @@ public class SidePropertyControl : ContentControl
     #region Url
 
 
+    public SidePropertyPanelModel SidePropertyPanelModel
+    {
+        get { return (SidePropertyPanelModel)GetValue(SidePropertyPanelModelProperty); }
+        set { SetValue(SidePropertyPanelModelProperty, value); }
+    }
+
+    // Using a DependencyProperty as the backing store for SidePropertyPanelModel.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty SidePropertyPanelModelProperty =
+        DependencyProperty.Register("SidePropertyPanelModel", typeof(SidePropertyPanelModel), typeof(SidePropertyControl), new PropertyMetadata((SidePropertyPanelModel)null));
+
+
+    /// <summary>
+    /// WPF 源码链接
+    /// </summary>
     public LinkString SourceCodeUrl
     {
         get { return (LinkString)GetValue(SourceCodeUrlProperty); }
         set { SetValue(SourceCodeUrlProperty, value); }
     }
 
-    // Using a DependencyProperty as the backing store for SourceCodeUrl.  This enables animation, styling, binding, etc...
+    /// <summary>
+    /// 默认是微软官方开源代码
+    /// </summary>
+
     public static readonly DependencyProperty SourceCodeUrlProperty = DependencyProperty.Register(
         "SourceCodeUrl",
         typeof(LinkString),
-        typeof(SidePropertyControl));
+        typeof(SidePropertyControl),
+        new PropertyMetadata(
+                new LinkString("https://github.com/dotnet/wpf/tree/main")
+        )
+    );
+
+    /// <summary>
+    /// 微软定义链接
+    /// </summary>
+    public LinkString ControlDefineUrl
+    {
+        get { return (LinkString)GetValue(ControlDefineUrlProperty); }
+        set { SetValue(ControlDefineUrlProperty, value); }
+    }
+
+    /// <summary>
+    /// 默认是微软官方控件Control的开发文档
+    /// </summary>
+    public static readonly DependencyProperty ControlDefineUrlProperty = DependencyProperty.Register(
+        "ControlDefineUrl",
+        typeof(LinkString),
+        typeof(SidePropertyControl),
+        new PropertyMetadata(
+            new LinkString("https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls?view=winrt-22621")
+        )
+    );
+
+
+
+    /// <summary>
+    /// 当前模块的View源码
+    /// </summary>
+    public LinkString DemoViewUrl
+    {
+        get { return (LinkString)GetValue(DemoViewUrlProperty); }
+        set { SetValue(DemoViewUrlProperty, value); }
+    }
+
+    /// <summary>
+    /// 默认为当前解决方案的GitHub地址
+    /// </summary>
+    public static readonly DependencyProperty DemoViewUrlProperty = DependencyProperty.Register(
+        "DemoViewUrl",
+        typeof(LinkString),
+        typeof(SidePropertyControl),
+        new PropertyMetadata(
+            new LinkString("https://github.com/huangj1e/WPFDemoFull")
+        )
+    );
+
+
+    /// <summary>
+    /// 当前模块的 ViewModel 源码
+    /// </summary>
+    public LinkString DemoViewModelUrl
+    {
+        get { return (LinkString)GetValue(DemoViewModelUrlProperty); }
+        set { SetValue(DemoViewModelUrlProperty, value); }
+    }
+
+    /// <summary>
+    /// 默认为当前解决方案的GitHub地址
+    /// </summary>
+    public static readonly DependencyProperty DemoViewModelUrlProperty = DependencyProperty.Register(
+        "DemoViewModelUrl",
+        typeof(LinkString),
+        typeof(SidePropertyControl),
+        new PropertyMetadata(
+            new LinkString("https://github.com/huangj1e/WPFDemoFull"))
+    );
 
     #endregion
 
-    #region OpenUrlCommand
+    #region OpenUrlCommand 
     public static readonly DependencyProperty OpenUrlCommandProperty = DependencyProperty.Register(
         "OpenUrlCommand",
         typeof(ICommand),
@@ -89,6 +175,9 @@ public class SidePropertyControl : ContentControl
             link.OpenUrl();
     }
 
+    /// <summary>
+    /// 此属性用于打开链接，不需在外部绑定
+    /// </summary>
     public ICommand OpenUrlCommand
     {
         get { return (ICommand)GetValue(OpenUrlCommandProperty); }
@@ -100,19 +189,19 @@ public class SidePropertyControl : ContentControl
 
     #region ResetCommand
 
-    public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
-        "Command",
+    public static readonly DependencyProperty ResetCommandProperty = DependencyProperty.Register(
+        "ResetCommand",
         typeof(ICommand),
         typeof(SidePropertyControl)
     );
 
     /// <summary>
-    /// 按钮的命令
+    /// 重置按钮的命令
     /// </summary>
-    public ICommand Command
+    public ICommand ResetCommand
     {
-        get { return (ICommand)GetValue(CommandProperty); }
-        set { SetValue(CommandProperty, value); }
+        get { return (ICommand)GetValue(ResetCommandProperty); }
+        set { SetValue(ResetCommandProperty, value); }
     }
 
     public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
@@ -121,7 +210,7 @@ public class SidePropertyControl : ContentControl
         typeof(SidePropertyControl));
 
     /// <summary>
-    /// 按钮执行的参数
+    /// 重置按钮执行的参数，预留的
     /// </summary>
     public object CommandParameter
     {

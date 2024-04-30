@@ -5,6 +5,9 @@
 /// </summary>
 public class ControlDemoInfo
 {
+
+
+
     public static readonly double MinWidth = 150;
 
     public static readonly double MinHeight = 200;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf.Transitions;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,10 +8,12 @@ namespace WPFDemoFull.Core.Models;
 
 
 /// <summary>
-/// 从枚举中获取枚举的列表
+/// 从枚举类型中获取枚举的列表
 /// </summary>
 public class EnumListItem
 {
+    public static IEnumerable<TransitionEffectKind> TransitionEffectKindOptions { get => Enum.GetValues(typeof(TransitionEffectKind)) as IEnumerable<TransitionEffectKind>; }
+
     public static IEnumerable<Dock> DockOptions { get => Enum.GetValues(typeof(Dock)) as IEnumerable<Dock>; }
 
     public static IEnumerable<HorizontalAlignment> HorizontalAlignmentOptions { get => Enum.GetValues(typeof(HorizontalAlignment)) as IEnumerable<HorizontalAlignment>; }

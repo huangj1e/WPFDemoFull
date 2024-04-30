@@ -10,6 +10,8 @@
     Title="{Binding Title}"
     Width="525"
     Height="350"
+    MinWidth="525"
+    MinHeight="350"
     d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
     WindowStartupLocation="CenterScreen"

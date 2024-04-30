@@ -99,7 +99,7 @@ public class DockInfo : BindableBase
         int index = 0,
         bool isshowDockOptions = false,
         double width = 200,
-        double height = 450)
+        double height = 480)
     {
         Index = index;
         IsShowDockOptions = isshowDockOptions;

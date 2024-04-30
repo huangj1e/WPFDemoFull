@@ -36,6 +36,7 @@
             VerticalContentAlignment="{Binding VerticalContentAlignment, Mode=TwoWay}"
             materialDesign:ElevationAssist.Elevation="Dp6">
             <StackPanel Margin="15">
+
                 <TextBlock
                     x:Name="TextBlockTitle"
                     d:Text="No. 999"
@@ -68,7 +69,7 @@
                 <Rectangle
                     Margin="0,10"
                     Style="{StaticResource PageSectionSeparator}" />
-                <Grid>
+                <Grid Visibility="{Binding IsShowDockOptions, Converter={StaticResource BoolToVisibilityConverter}}">
                     <ComboBox
                         Margin="5"
                         d:ItemsSource="{x:Static core:EnumListItem.DockOptions}"
@@ -78,12 +79,8 @@
                         materialDesign:HintAssist.IsFloating="True"
                         ItemsSource="{x:Static core:EnumListItem.DockOptions}"
                         SelectedItem="{Binding SelectedDock}"
-                        Visibility="{Binding IsShowDockOptions, Converter={StaticResource BoolToVisibilityConverter}}" />
-                    <materialDesign:PackIcon
-                        HorizontalAlignment="Right"
-                        Kind="Information" />
+                        ToolTip="直接父控件为 DockPanel 才有效" />
                 </Grid>
-
                 <ComboBox
                     Margin="5"
                     d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
@@ -116,6 +113,21 @@
                     materialDesign:HintAssist.IsFloating="True"
                     ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
                     SelectedItem="{Binding VerticalContentAlignment}" />
+                <DockPanel
+                    Margin="0,5,0,0"
+                    Opacity=".3">
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        Kind="CameraControl" />
+                    <TextBlock
+                        HorizontalAlignment="Left"
+                        FontSize="11"
+                        Text="Custom User Control DockChildControl"
+                        TextWrapping="Wrap" />
+                </DockPanel>
+
             </StackPanel>
         </materialDesign:Card>
     </Grid>

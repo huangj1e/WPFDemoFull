@@ -9,7 +9,10 @@ namespace WPFDemoFull.Core.Models;
 /// </summary>
 public class DockInfo : BindableBase
 {
-    private HorizontalAlignment _horizontalAlignment;
+    /// <summary>
+    /// 默认值为Stretch
+    /// </summary>
+    private HorizontalAlignment _horizontalAlignment = HorizontalAlignment.Stretch;
     public HorizontalAlignment HorizontalAlignment
     {
         get { return _horizontalAlignment; }
@@ -87,6 +90,11 @@ public class DockInfo : BindableBase
     /// 隐藏Dock选项
     /// </summary>
     public void HideDockOptions() => IsShowDockOptions = false;
+
+
+
+    public void HorizontalAlignmentChange(HorizontalAlignment horizontalAlignment)
+        => HorizontalAlignment = horizontalAlignment;
 
     /// <summary>
     /// 一个示例用的用户控件Model

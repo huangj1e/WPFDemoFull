@@ -36,7 +36,6 @@
             VerticalContentAlignment="{Binding VerticalContentAlignment, Mode=TwoWay}"
             materialDesign:ElevationAssist.Elevation="Dp6">
             <StackPanel Margin="15">
-
                 <TextBlock
                     x:Name="TextBlockTitle"
                     d:Text="No. 999"
@@ -70,6 +69,12 @@
                     Margin="0,10"
                     Style="{StaticResource PageSectionSeparator}" />
                 <Grid Visibility="{Binding IsShowDockOptions, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid.ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="获取指定的 System.Windows.UIElement 的 System.Windows.Controls.DockPanel.Dock 附加属性值。" />
+                            <TextBlock Text="获直接父控件为 DockPanel 才有效" />
+                        </StackPanel>
+                    </Grid.ToolTip>
                     <ComboBox
                         Margin="5"
                         d:ItemsSource="{x:Static core:EnumListItem.DockOptions}"
@@ -78,25 +83,51 @@
                         materialDesign:HintAssist.Hint="DockPanel.Dock"
                         materialDesign:HintAssist.IsFloating="True"
                         ItemsSource="{x:Static core:EnumListItem.DockOptions}"
-                        SelectedItem="{Binding SelectedDock}"
-                        ToolTip="直接父控件为 DockPanel 才有效" />
+                        SelectedItem="{Binding SelectedDock}" />
                 </Grid>
-                <ComboBox
-                    Margin="5"
-                    d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                    d:SelectedIndex="0"
-                    materialDesign:HintAssist.Hint="HorizontalAlignment"
-                    materialDesign:HintAssist.IsFloating="True"
-                    ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                    SelectedItem="{Binding HorizontalAlignment}" />
-                <ComboBox
-                    Margin="5"
-                    d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                    d:SelectedIndex="0"
-                    materialDesign:HintAssist.Hint="HorizontalContentAlignment"
-                    materialDesign:HintAssist.IsFloating="True"
-                    ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
-                    SelectedItem="{Binding HorizontalContentAlignment}" />
+                <Grid>
+                    <Grid.ToolTip>
+                        <StackPanel>
+                            <TextBlock
+                                Text="摘要: 获取或设置在父元素(如 Panel 或项控件)中组合此元素时所应用的水平对齐特征。"
+                                TextWrapping="Wrap" />
+                            <TextBlock TextWrapping="Wrap" />
+                            <TextBlock
+                                Text="返回结果: 水平对齐设置，它是一个枚举值。 默认值为 System.Windows.HorizontalAlignment.Stretch。"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid.ToolTip>
+                    <ComboBox
+                        Margin="5"
+                        d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                        d:SelectedIndex="0"
+                        materialDesign:HintAssist.Hint="HorizontalAlignment"
+                        materialDesign:HintAssist.IsFloating="True"
+                        ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                        SelectedItem="{Binding HorizontalAlignment}" />
+                </Grid>
+                <Grid>
+                    <Grid.ToolTip>
+                        <StackPanel MaxWidth="360">
+                            <TextBlock
+                                Text="摘要:  获取或设置控件内容的水平对齐方式。"
+                                TextWrapping="Wrap" />
+                            <Rectangle Height="1" />
+                            <TextBlock
+                                Text="返回结果: System.Windows.HorizontalAlignment 值之一。 默认值为 System.Windows.HorizontalAlignment.Left。"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid.ToolTip>
+                    <ComboBox
+                        Margin="5"
+                        d:ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                        d:SelectedIndex="0"
+                        materialDesign:HintAssist.Hint="HorizontalContentAlignment"
+                        materialDesign:HintAssist.IsFloating="True"
+                        ItemsSource="{x:Static core:EnumListItem.HorizontalAlignmentOptions}"
+                        SelectedItem="{Binding HorizontalContentAlignment}" />
+                </Grid>
+
                 <ComboBox
                     Margin="5"
                     d:ItemsSource="{x:Static core:EnumListItem.VerticalAlignmentOptions}"
@@ -123,6 +154,7 @@
                         Kind="CameraControl" />
                     <TextBlock
                         HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
                         FontSize="11"
                         Text="Custom User Control DockChildControl"
                         TextWrapping="Wrap" />

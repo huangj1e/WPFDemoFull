@@ -8,12 +8,17 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
+    d:Background="White"
     d:DataContext="{d:DesignInstance Type=local:GridDemoViewModel}"
     d:DesignHeight="600"
     d:DesignWidth="800"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromRight}">
+    <materialDesign:TransitioningContent>
+        <materialDesign:TransitioningContent.OpeningEffects>
+            <materialDesign:TransitionEffect Kind="FadeIn" />
+            <materialDesign:TransitionEffect Kind="SlideInFromRight" />
+        </materialDesign:TransitioningContent.OpeningEffects>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
@@ -23,6 +28,7 @@
                 <TextBlock
                     Margin="15,0"
                     VerticalAlignment="Center"
+                    d:Text="标题"
                     FontSize="36"
                     FontWeight="Bold"
                     Text="{Binding ViewTitle}" />
@@ -129,7 +135,6 @@
                         Grid.ColumnSpan="2"
                         Height="10"
                         HorizontalAlignment="Stretch"
-                        Background="Blue"
                         ResizeDirection="Rows">
                         <GridSplitter.Template>
                             <ControlTemplate>
@@ -168,7 +173,6 @@
                     </GridSplitter>
                     <!--  设置 GridSplitter 的高度  -->
                     <!--  在第二行和第三行之间添加一个 GridSplitter  -->
-
                 </Grid>
             </Grid>
         </ScrollViewer>

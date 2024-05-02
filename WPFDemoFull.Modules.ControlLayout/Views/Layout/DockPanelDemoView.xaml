@@ -55,6 +55,7 @@
                                     Style="{DynamicResource PanelChildTitle}"
                                     Text="DockPanel 控件主要选项组合" />
                                 <DockPanel LastChildFill="{Binding LastChildFill}">
+                                    <!--  这里面都是自定义用户控件  -->
                                     <panelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[0]}" />
                                     <panelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[1]}" />
                                     <panelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[2]}" />
@@ -62,11 +63,13 @@
                                     <panelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[4]}" />
                                     <panelChild:DockChildControl DataContext="{Binding DockInfoDemoList2[5]}" />
                                 </DockPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel
+                                    Opacity=".6"
+                                    Orientation="Horizontal">
                                     <materialDesign:PackIcon
                                         VerticalAlignment="Center"
                                         Kind="Information" />
-                                    <Label Content="请尝试修改这些选项" />
+                                    <Label Content="上面的控件是自定义用户控件，请尝试修改这些选项 注意它们的布局变化。" />
                                 </StackPanel>
                                 <Rectangle Style="{StaticResource PageSectionSeparator}" />
                             </StackPanel>
@@ -113,11 +116,13 @@
                                             DockPanel.Dock="Top" />
                                     </DockPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel
+                                    Opacity=".6"
+                                    Orientation="Horizontal">
                                     <materialDesign:PackIcon
                                         VerticalAlignment="Center"
                                         Kind="Information" />
-                                    <Label Content="因为本例中的ItemsControl中的内容并不属于DockPanel的直接下级，所以DockPanel.Dock的设置不会生效" />
+                                    <Label Content="当 LastChildFillo  true 时，注意 LastChild 的变化 " />
                                 </StackPanel>
                                 <Rectangle Style="{StaticResource PageSectionSeparator}" />
                             </StackPanel>
@@ -128,7 +133,6 @@
                                     VerticalAlignment="Center"
                                     Style="{DynamicResource PanelChildTitle}"
                                     Text="DockPanel布局控件" />
-
                                 <ItemsControl
                                     d:ItemsSource="{d:SampleData ItemCount=10}"
                                     ItemsSource="{Binding DockInfoDemoList}">
@@ -213,20 +217,21 @@
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel
+                                    Opacity=".6"
+                                    Orientation="Horizontal">
                                     <materialDesign:PackIcon
                                         VerticalAlignment="Center"
                                         Kind="Information" />
-                                    <Label Content="因为本例中的ItemsControl中的内容并不属于DockPanel的直接下级，所以DockPanel.Dock的设置不会生效" />
+                                    <Label Content="因为本例中的ItemsControl中的内容并不属于DockPanel的直接下级， 所以DockPanel.Dock的设置不会生效" />
                                 </StackPanel>
                                 <!--  分割线  -->
                                 <Rectangle Style="{StaticResource PageSectionSeparator}" />
                             </StackPanel>
-
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
-                <!--  右侧固定 控制面板  -->
+                <!--  右侧固定 控制面板 这个是自定义控件  -->
                 <panelChild:SidePropertyControl
                     Grid.Column="1"
                     Margin="5"
@@ -237,11 +242,13 @@
                     GroupBoxTitle="{Binding ViewTitle, StringFormat={x:Static core:FormatText.Attribute}}"
                     ResetCommand="{Binding SidePropertyPanelModel.ResetCommand}"
                     SourceCodeUrl="{Binding SidePropertyPanelModel.SourceCodeUrl}">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="0,0,0,10">
+                        <StackPanel
+                            Margin="0,0,0,5"
+                            Orientation="Horizontal">
                             <TextBlock
                                 VerticalAlignment="Center"
-                                FontSize="18"
+                                FontSize="14"
                                 Text="LastChildFill" />
                             <Viewbox Height="25">
                                 <ToggleButton

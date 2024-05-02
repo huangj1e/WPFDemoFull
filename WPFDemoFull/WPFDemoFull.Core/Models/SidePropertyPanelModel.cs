@@ -33,10 +33,10 @@ public class SidePropertyPanelModel
         ICommand resetCommand = null)
     {
         GroupBoxTitle = groupBoxTitle;
-        SourceCodeUrl = new(sourceCodeUrl);
-        ControlDefinedUrl = new(controlDefinedUrl);
-        DemoViewUrl = new(demoViewUrl);
-        DemoViewModelUrl = new(demoViewModelUrl);
+        SourceCodeUrl = sourceCodeUrl;
+        ControlDefinedUrl = controlDefinedUrl;
+        DemoViewUrl = demoViewUrl;
+        DemoViewModelUrl = demoViewModelUrl;
         ResetCommand = resetCommand;
     }
 
@@ -53,25 +53,25 @@ public class SidePropertyPanelModel
     /// WPF 源码链接
     /// </summary>
     [Bindable(true)]
-    public LinkString SourceCodeUrl { get; set; }
+    public string SourceCodeUrl { get; set; }
 
     /// <summary>
     /// 微软定义链接
     /// </summary>
     [Bindable(true)]
-    public LinkString ControlDefinedUrl { get; set; }
+    public string ControlDefinedUrl { get; set; }
 
     /// <summary>
     /// 当前页面Xaml源码 
     /// </summary>
     [Bindable(true)]
-    public LinkString DemoViewUrl { get; set; }
+    public string DemoViewUrl { get; set; }
 
     /// <summary>
     /// 当前页面ViewModel源码
     /// </summary>
     [Bindable(true)]
-    public LinkString DemoViewModelUrl { get; set; }
+    public string DemoViewModelUrl { get; set; }
 
     /// <summary>
     /// 重置控件的命令

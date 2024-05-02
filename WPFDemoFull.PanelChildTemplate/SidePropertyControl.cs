@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WPFDemoFull.Core.Models;
+using WPFDemoFull.Core.Tools;
 
 namespace WPFDemoFull.PanelChildTemplate;
 
@@ -77,9 +78,9 @@ public class SidePropertyControl : ContentControl
     /// <summary>
     /// WPF 源码链接
     /// </summary>
-    public LinkString SourceCodeUrl
+    public string SourceCodeUrl
     {
-        get { return (LinkString)GetValue(SourceCodeUrlProperty); }
+        get { return (string)GetValue(SourceCodeUrlProperty); }
         set { SetValue(SourceCodeUrlProperty, value); }
     }
 
@@ -89,19 +90,17 @@ public class SidePropertyControl : ContentControl
 
     public static readonly DependencyProperty SourceCodeUrlProperty = DependencyProperty.Register(
         "SourceCodeUrl",
-        typeof(LinkString),
+        typeof(string),
         typeof(SidePropertyControl),
-        new PropertyMetadata(
-                new LinkString("https://github.com/dotnet/wpf/tree/main")
-        )
+        new PropertyMetadata("https://github.com/dotnet/wpf/tree/main")
     );
 
     /// <summary>
     /// 微软定义链接
     /// </summary>
-    public LinkString ControlDefineUrl
+    public string ControlDefineUrl
     {
-        get { return (LinkString)GetValue(ControlDefineUrlProperty); }
+        get { return (string)GetValue(ControlDefineUrlProperty); }
         set { SetValue(ControlDefineUrlProperty, value); }
     }
 
@@ -110,11 +109,9 @@ public class SidePropertyControl : ContentControl
     /// </summary>
     public static readonly DependencyProperty ControlDefineUrlProperty = DependencyProperty.Register(
         "ControlDefineUrl",
-        typeof(LinkString),
+        typeof(string),
         typeof(SidePropertyControl),
-        new PropertyMetadata(
-            new LinkString("https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls?view=winrt-22621")
-        )
+        new PropertyMetadata("https://learn.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls?view=winrt-22621")
     );
 
 
@@ -122,9 +119,9 @@ public class SidePropertyControl : ContentControl
     /// <summary>
     /// 当前模块的View源码
     /// </summary>
-    public LinkString DemoViewUrl
+    public string DemoViewUrl
     {
-        get { return (LinkString)GetValue(DemoViewUrlProperty); }
+        get { return (string)GetValue(DemoViewUrlProperty); }
         set { SetValue(DemoViewUrlProperty, value); }
     }
 
@@ -133,20 +130,18 @@ public class SidePropertyControl : ContentControl
     /// </summary>
     public static readonly DependencyProperty DemoViewUrlProperty = DependencyProperty.Register(
         "DemoViewUrl",
-        typeof(LinkString),
+        typeof(string),
         typeof(SidePropertyControl),
-        new PropertyMetadata(
-            new LinkString("https://github.com/huangj1e/WPFDemoFull")
-        )
+        new PropertyMetadata("https://github.com/huangj1e/WPFDemoFull")
     );
 
 
     /// <summary>
     /// 当前模块的 ViewModel 源码
     /// </summary>
-    public LinkString DemoViewModelUrl
+    public string DemoViewModelUrl
     {
-        get { return (LinkString)GetValue(DemoViewModelUrlProperty); }
+        get { return (string)GetValue(DemoViewModelUrlProperty); }
         set { SetValue(DemoViewModelUrlProperty, value); }
     }
 
@@ -155,10 +150,9 @@ public class SidePropertyControl : ContentControl
     /// </summary>
     public static readonly DependencyProperty DemoViewModelUrlProperty = DependencyProperty.Register(
         "DemoViewModelUrl",
-        typeof(LinkString),
+        typeof(string),
         typeof(SidePropertyControl),
-        new PropertyMetadata(
-            new LinkString("https://github.com/huangj1e/WPFDemoFull"))
+        new PropertyMetadata("https://github.com/huangj1e/WPFDemoFull")
     );
 
     #endregion
@@ -171,8 +165,8 @@ public class SidePropertyControl : ContentControl
         new PropertyMetadata(new DelegateCommand<object>(ExecOpenUrl)));
     private static void ExecOpenUrl(object obj)
     {
-        if (obj is LinkString link)
-            link.OpenUrl();
+        if (obj is string link)
+            Link.OpenInBrowser(link);
     }
 
     /// <summary>

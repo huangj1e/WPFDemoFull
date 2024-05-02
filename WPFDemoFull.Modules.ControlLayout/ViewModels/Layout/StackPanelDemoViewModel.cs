@@ -30,7 +30,7 @@ public class StackPanelDemoViewModel : ViewModelSidePanelBase
             demoViewUrl,
             demoViewModelUrl,
             new DelegateCommand(InitPanelChild)
-            );
+        );
     }
 
     private ObservableCollection<DockInfo> _dockInfoList;
